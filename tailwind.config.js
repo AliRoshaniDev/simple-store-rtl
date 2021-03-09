@@ -8,6 +8,9 @@ module.exports = {
         "cupcake-brown": "#C27628",
         "cupcake-pink": "#FCB6D8",
       },
+      height: {
+        "88": "22rem"
+      },
     },
   },
   variants: {
