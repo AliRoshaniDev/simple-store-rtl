@@ -1,0 +1,194 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "ساعت ساده",
+      "price": 100,
+      "number": 4,
+      "picture": "/images/product1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "آیفون X",
+      "price": 150,
+      "number": 2,
+      "picture": "/images/product2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "عینک سیمی",
+      "price": 81,
+      "number": 4,
+      "picture": "/images/product3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "عطر مشهدی",
+      "price": 32,
+      "number": 9,
+      "picture": "/images/product4.jpg"
+    },
+    {
+      "id": 5,
+      "name": "آیفون 11",
+      "price": 175,
+      "number": 2,
+      "picture": "/images/product5.jpg"
+    },
+    {
+      "id": 6,
+      "name": "عینک باکلاس",
+      "price": 93,
+      "number": 6,
+      "picture": "/images/product6.jpg"
+    },
+    {
+      "id": 7,
+      "name": "ساعت اصل چین",
+      "price": 85,
+      "number": 15,
+      "picture": "/images/product7.jpg"
+    },
+    {
+      "id": 8,
+      "name": "ساعت کاسیو",
+      "price": 38,
+      "number": 23,
+      "picture": "/images/product8.jpg"
+    },
+    {
+      "id": 9,
+      "name": "ادکلن فوق لاکچری",
+      "price": 92,
+      "number": 22,
+      "picture": "/images/product9.jpg"
+    },
+    {
+      "id": 10,
+      "name": "عینک پلاستیکی",
+      "price": 56,
+      "number": 11,
+      "picture": "/images/product10.jpg"
+    },
+    {
+      "id": 11,
+      "name": "ایرفون apple",
+      "price": 90,
+      "number": 31,
+      "picture": "/images/product11.jpg"
+    },
+    {
+      "id": 12,
+      "name": "کابل شارژ",
+      "price": 12,
+      "number": 32,
+      "picture": "/images/product12.jpg"
+    },
+    {
+      "id": 13,
+      "name": "عینک خفن",
+      "price": 121,
+      "number": 11,
+      "picture": "/images/product13.jpg"
+    },
+    {
+      "id": 14,
+      "name": "ادکلن اصل",
+      "price": 125,
+      "number": 31,
+      "picture": "/images/product14.jpg"
+    },
+    {
+      "id": 15,
+      "name": "عینک لوکس",
+      "price": 135,
+      "number": 5,
+      "picture": "/images/product15.jpg"
+    },
+    {
+      "id": 16,
+      "name": "ساعت ژاپنی",
+      "price": 93,
+      "number": 3,
+      "picture": "/images/product16.jpg"
+    },
+    {
+      "id": 17,
+      "name": "ساعت ظریف",
+      "price": 100,
+      "number": 2,
+      "picture": "/images/product17.jpg"
+    },
+    {
+      "id": 18,
+      "name": "هدفون apple",
+      "price": 200,
+      "number": 31,
+      "picture": "/images/product18.jpg"
+    },
+    {
+      "id": 19,
+      "name": "کامیون اسباب بازی",
+      "price": 24,
+      "number": 6,
+      "picture": "/images/product19.jpg"
+    },
+    {
+      "id": 20,
+      "name": "عینک شفاف",
+      "price": 62,
+      "number": 3,
+      "picture": "/images/product20.jpg"
+    },
+    {
+      "id": 21,
+      "name": "عینک زنونه",
+      "price": 39,
+      "number": 2,
+      "picture": "/images/product21.jpg"
+    },
+    {
+      "id": 22,
+      "name": "ساعت مشتی",
+      "price": 110,
+      "number": 1,
+      "picture": "/images/product22.jpg"
+    },
+    {
+      "id": 23,
+      "name": "عینک پر رو",
+      "price": 200,
+      "number": 31,
+      "picture": "/images/product23.jpg"
+    },
+    {
+      "id": 24,
+      "name": "عینک پر رو",
+      "price": 200,
+      "number": 31,
+      "picture": "/images/product24.jpg"
+    }
+  ],
+  "slides": [
+    {
+      "id": 1,
+      "picture": "/images/slide1.jpg",
+      "pictureAlt": "Lego and app products"
+    },
+    {
+      "id": 2,
+      "picture": "/images/slide2.jpg",
+      "pictureAlt": "app products"
+    },
+    {
+      "id": 3,
+      "picture": "/images/slide3.jpg",
+      "pictureAlt": "apple products"
+    },
+    {
+      "id": 4,
+      "picture": "/images/slide4.jpg",
+      "pictureAlt": "macbook"
+    }
+  ]
+}
