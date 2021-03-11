@@ -7,7 +7,7 @@ function Search() {
   const [inputFocus, setInputFocus] = useState(false);
 
   return (
-    <div className={`flex p-2 rounded-lg bg-transparent hover:bg-cupcake-light ${inputFocus && "bg-cupcake-light"} cursor-pointer sm:mr-4 transition duration-300 ease-in-out`}>
+    <div className={`flex sm:mr-4 w-full mb-2 sm:mb-0 sm:w-72 p-2 rounded-lg bg-transparent hover:bg-cupcake-light ${inputFocus && "bg-cupcake-light"} cursor-pointer  transition duration-300 ease-in-out`}>
       <ReactSVG src={searchIco} />
       <input
         type="text"
@@ -17,7 +17,7 @@ function Search() {
         onBlur={() => {
           setInputFocus(false);
         }}
-        className="ml-2 outline-none rounded-md"
+        className="ml-2 outline-none rounded-md w-full"
         placeholder="جستجو"
         dir="rtl"
       />

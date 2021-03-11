@@ -11,10 +11,13 @@ module.exports = {
       height: {
         "88": "22rem"
       },
+      width: {
+        "cartItemText": "calc(100% - 7rem)",
+      },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [require('daisyui')],
+  plugins: [],
 };

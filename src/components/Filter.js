@@ -1,23 +1,33 @@
 import React, { useState } from "react";
 import { ReactSVG } from "react-svg";
-import FilterItems from "./FilterItems";
+import DropDown from "./DropDown";
+import DropDownTextItem from "./DropDownTextItem";
 
 import filterIco from "../assets/images/svg/filter.svg";
 
 function Filter() {
-  const [iconClick, setIconClick] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
 
-  const handleShowItems = () => {
-    setIconClick((pre) => !pre);
+  const handleShowFilters = () => {
+    setShowFilters((pre) => !pre);
   };
 
   return (
     <div className="relative">
-      <div onClick={handleShowItems} className={`flex p-2 rounded-lg bg-transparent hover:bg-cupcake-light ${iconClick && "bg-cupcake-light"} cursor-pointer transition duration-300 ease-in-out`}>
+      <div onClick={handleShowFilters} className={`flex flex-row-reverse items-center mr-2 p-2 rounded-lg bg-transparent sm:hover:bg-cupcake-light ${showFilters && "bg-cupcake-light"} cursor-pointer transition duration-300 ease-in-out`}>
         <ReactSVG src={filterIco} />
-        <spna className="ml-2">فیلتر</spna>
+        <span className="mr-2 ml-1">فیلتر</span>
       </div>
-      {iconClick && <FilterItems />}
+      {showFilters && (
+        <DropDown type="FILTER">
+          <DropDownTextItem
+            text="بر اساس موجودی"
+            onClick={() => {
+              console.log("Clicked");
+            }}
+          />
+        </DropDown>
+      )}
     </div>
   );
 }
