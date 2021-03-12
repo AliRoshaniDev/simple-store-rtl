@@ -1,26 +1,15 @@
 import React from "react";
-import useCartData from "../hooks/useCartData";
 import useSetCartData from "../hooks/useSetCartData";
+import useTotal from "../hooks/useTotal";
 
 function DropDownCartTotal() {
-  const cartData = useCartData();
-
   const setCartData = useSetCartData();
+  const calcualteTotal = useTotal();
 
   const handleAddCart = (event) => {
     event.stopPropagation();
     setCartData("ALL", "DELETE");
   };
-
-  function calcualteTotal(requestedData) {
-    let total = 0;
-    for (let i = 0; i < cartData.length; i++) {
-      // const element = array[i];
-      if (requestedData === "NUMBER") total += cartData[i].numberAdded;
-      if (requestedData === "PRICE") total += cartData[i].price;
-    }
-    return total;
-  }
 
   return (
     <li className="h-auto text-right w-full whitespace-no-wrap rounded-lg text-sm md:text-base text-gray-600 hover:text-gray-800">
