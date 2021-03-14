@@ -22,7 +22,7 @@ function SlideShow({ imgAlt }) {
         <Swiper navigation pagination autoplay loop={true} slidesPerView={1} className="shadow-lg rounded-xl">
           {sliderData.map((item) => (
             <SwiperSlide>
-              <img src={item.picture} alt={item.pictureAlt} key={item.id} className="object-cover h-56 sm:h-64 md:h-88 w-full" />
+              <img src={item.picture} alt={item.pictureAlt} key={item.id} className="object-cover h-56 sm:h-64 md:h-92 w-full" />
             </SwiperSlide>
           ))}
         </Swiper>

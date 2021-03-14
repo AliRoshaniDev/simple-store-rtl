@@ -1,32 +1,37 @@
 import React, { useState } from "react";
 import { ReactSVG } from "react-svg";
-import DropDown from "./DropDown";
-import DropDownTextItem from "./DropDownTextItem";
+import DropMenu from "./DropMenu";
+import CustomizeItem from "./CustomizeItem";
+import useSetProducts from "../hooks/useSetProducts";
 
 import filterIco from "../assets/images/svg/filter.svg";
 
 function Filter() {
-  const [showFilters, setShowFilters] = useState(false);
+  const [filterIsHover, setFilterIsHover] = useState(false);
+  const setProducts = useSetProducts();
 
-  const handleShowFilters = () => {
-    setShowFilters((pre) => !pre);
+  const handleShowInstock = () => {
+    setProducts("inStockFilter", true);
   };
 
   return (
-    <div className="relative">
-      <div onClick={handleShowFilters} className={`flex flex-row-reverse items-center mr-2 p-2 rounded-lg bg-transparent sm:hover:bg-cupcake-light ${showFilters && "bg-cupcake-light"} cursor-pointer transition duration-300 ease-in-out`}>
+    <div
+      onMouseEnter={() => {
+        setFilterIsHover(true);
+      }}
+      onMouseLeave={() => {
+        setFilterIsHover(false);
+      }}
+      className="relative"
+    >
+      <div className={`flex flex-row-reverse items-center mr-2 p-2 rounded-lg bg-transparent sm:hover:bg-mycolor-light ${filterIsHover && "bg-mycolor-light"} cursor-pointer transition duration-300 ease-in-out`}>
         <ReactSVG src={filterIco} />
         <span className="mr-2 ml-1">فیلتر</span>
       </div>
-      {showFilters && (
-        <DropDown type="FILTER">
-          <DropDownTextItem
-            text="بر اساس موجودی"
-            onClick={() => {
-              console.log("Clicked");
-            }}
-          />
-        </DropDown>
+      {filterIsHover && (
+        <DropMenu type="FILTER">
+          <CustomizeItem text="کالا های موجود" onClick={handleShowInstock} />
+        </DropMenu>
       )}
     </div>
   );

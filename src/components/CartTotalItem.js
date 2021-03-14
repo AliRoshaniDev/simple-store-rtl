@@ -2,7 +2,7 @@ import React from "react";
 import useSetCartData from "../hooks/useSetCartData";
 import useTotal from "../hooks/useTotal";
 
-function DropDownCartTotal() {
+function CartTotalItem() {
   const setCartData = useSetCartData();
   const calcualteTotal = useTotal();
 
@@ -12,7 +12,7 @@ function DropDownCartTotal() {
   };
 
   return (
-    <li className="h-auto text-right w-full whitespace-no-wrap rounded-lg text-sm md:text-base text-gray-600 hover:text-gray-800">
+    <div className="h-auto text-right w-full whitespace-no-wrap rounded-lg text-sm md:text-base text-gray-600 hover:text-gray-800">
       <div className="flex flex-col px-2 py-2 h-full border-t-2 border-b-2 border-gray-100">
         <div className="flex justify-between mb-1">
           <span className="font-semibold">جمع قیمت:</span>
@@ -24,12 +24,12 @@ function DropDownCartTotal() {
         </div>
       </div>
       <div className="pt-2">
-        <button onClick={handleAddCart} className="w-full h-10 bg-cupcake-light hover:bg-cupcake-pink rounded-lg text-black">
+        <button onClick={handleAddCart} className="w-full h-10 text-mycolor-dark bg-mycolor-light hover:text-mycolor-light hover:bg-mycolor-dark rounded-lg transition duration-200 ease-in-out">
           نهایی کردن خرید
         </button>
       </div>
-    </li>
+    </div>
   );
 }
 
-export default DropDownCartTotal;
+export default CartTotalItem;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ReactSVG } from "react-svg";
 
 import useSetCartData from "../hooks/useSetCartData";
@@ -7,10 +7,21 @@ import addIco from "../assets/images/svg/add.svg";
 
 function Card({ name, price, number, picture, id }) {
   const setCartData = useSetCartData();
+  // SHOULD REFACTOOOOOOOOOOOOOOOOOOOR
+  // console.log("number: " + number);
+
+  const [displayNumber, setDisplayNumber] = useState(number);
 
   const handleAddCart = () => {
-    setCartData({ name, price, numberAdded: 1, picture, id });
+    if (displayNumber > 0) {
+      setCartData({ name, price, numberAdded: 1, picture, id });
+      setDisplayNumber((pre) => pre - 1);
+    }
   };
+
+  useEffect(() => {
+    setDisplayNumber(number);
+  }, [number]);
 
   return (
     <article className="rounded-xl shadow-lg w-10/12 md:w-full h-72">
@@ -30,7 +41,7 @@ function Card({ name, price, number, picture, id }) {
           <span className="text-gray-400" dir="rtl">
             {price} ريال
           </span>
-          <span className="text-gray-400">{number} عدد مانده</span>
+          <span className="text-gray-400">{displayNumber} عدد مانده</span>
         </div>
       </footer>
     </article>
