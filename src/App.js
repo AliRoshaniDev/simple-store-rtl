@@ -3,17 +3,20 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import NavBar from "./components/NavBar";
 import SlideShow from "./components/SlideShow";
-import ProductContainer from "./components/ProductContainer";
+import Products from "./components/Products";
 import CartProvider from "./providers/CartProvider";
+import ProductProvider from "./providers/ProductProvider";
 
 function App() {
   return (
     <CartProvider>
-      <Router>
-        <NavBar />
-        <SlideShow />
-        <Route path={["/page/:pageNumber?", "/"]} exact component={ProductContainer} />
-      </Router>
+      <ProductProvider>
+        <Router>
+          <NavBar />
+          <SlideShow />
+          <Route path={["/page/:pageNumber?", "/"]} exact component={Products} />
+        </Router>
+      </ProductProvider>
     </CartProvider>
   );
 }
