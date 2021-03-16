@@ -9,9 +9,9 @@ module.exports = {
         "cupcake-pink": "#FCB6D8",
 
 
-        "mycolor-light": "#FFF548",
+        "mycolor-light": "#edffea",
         "mycolor-lesslight": "#ece242",
-        "mycolor-dark": "#3C1A5B",
+        "mycolor-dark": "#216353",
       },
       height: {
         "88": "22rem",
@@ -23,6 +23,12 @@ module.exports = {
       fontFamily: {
         "vazir-latin": "Vazir",
       },
+      gridTemplateRows: {
+        '8': 'repeat(8, minmax(0, 1fr))'
+      },
+      maxHeight: {
+        '112': '28rem',
+      }
     },
   },
   variants: {
