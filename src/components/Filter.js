@@ -3,15 +3,19 @@ import { ReactSVG } from "react-svg";
 import DropMenu from "./DropMenu";
 import CustomizeItem from "./CustomizeItem";
 import useSetProducts from "../hooks/useSetProducts";
+import Badge from "./Badge";
 
 import filterIco from "../assets/images/svg/filter.svg";
 
 function Filter() {
   const [filterIsHover, setFilterIsHover] = useState(false);
+  const [filterIsActive, setFilterIsActive] = useState(false);
+
   const setProducts = useSetProducts();
 
   const handleShowInstock = () => {
-    setProducts("inStockFilter", true);
+    setProducts("inStockFilter", !filterIsActive);
+    setFilterIsActive((pre) => !pre);
   };
 
   return (
@@ -24,13 +28,15 @@ function Filter() {
       }}
       className="relative"
     >
-      <div className={`flex flex-row-reverse items-center mr-2 p-2 rounded-lg bg-transparent sm:hover:bg-mycolor-light ${filterIsHover && "bg-mycolor-light"} cursor-pointer transition duration-300 ease-in-out`}>
+      <div className={`flex flex-row-reverse items-center p-2 rounded-lg bg-transparent sm:hover:bg-mycolor-light ${filterIsHover && "bg-mycolor-light"} cursor-pointer transition duration-300 ease-in-out`}>
+        {filterIsActive && <Badge size="SMALL" />}
+
         <ReactSVG src={filterIco} />
         <span className="mr-2 ml-1">فیلتر</span>
       </div>
       {filterIsHover && (
         <DropMenu type="FILTER">
-          <CustomizeItem text="کالا های موجود" onClick={handleShowInstock} />
+          <CustomizeItem text="کالا های موجود" onClick={handleShowInstock} active={filterIsActive} />
         </DropMenu>
       )}
     </div>

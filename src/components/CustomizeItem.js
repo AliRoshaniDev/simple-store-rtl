@@ -1,8 +1,8 @@
 import React from "react";
 
-function CustomizeItem({ text, onClick }) {
+function CustomizeItem({ text, onClick, active = false }) {
   return (
-    <div onClick={onClick} className="text-right p-1 cursor-pointer whitespace-no-wrap rounded-lg text-sm md:text-base text-gray-600 hover:text-gray-800 hover:bg-mycolor-light">
+    <div onClick={onClick} className={`text-right p-1 cursor-pointer whitespace-no-wrap rounded-lg text-sm md:text-base text-gray-600 ${active && "bg-mycolor-dark text-mycolor-light"} hover:bg-mycolor-dark hover:text-mycolor-light`}>
       <div className="px-2 py-1">
         <span>{text}</span>
       </div>
