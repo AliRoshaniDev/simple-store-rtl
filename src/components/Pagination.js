@@ -24,9 +24,9 @@ function Pagination() {
 
   return (
     <footer className="flex justify-center">
-      <div class="flex">
+      <div className="flex">
         {pageNumbersArray.map((itemData) => (
-          <PaginationItem {...itemData} />
+          <PaginationItem {...itemData} key={itemData.body} />
         ))}
       </div>
     </footer>
@@ -34,26 +34,3 @@ function Pagination() {
 }
 
 export default Pagination;
-
-// const pageNumbersArray = [];
-// for (let i = 1; i <= totalPageNumber; i++) {
-//   if(totalPageNumber > 3) {
-//     i === 4 && pageNumbersArray.push({body: '...', pageNumber: i, disabled: true});
-//   }
-//   if (i <=  && ) {
-
-//   }
-//   pageNumbersArray.push({body: i, pageNumber: i});
-// }
-
-// return (
-//   <footer className="flex justify-center">
-//     <div class="flex">
-//       <PaginationItem body="1" pageNumber={1} />
-//       {pageNumbersArray.map((number) => (
-//         <PaginationItem body={number} pageNumber={number} />
-//       ))}
-//       <PaginationItem body="2" />
-//     </div>
-//   </footer>
-// );

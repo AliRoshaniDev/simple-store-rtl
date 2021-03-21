@@ -13,7 +13,7 @@ SwiperCore.use([Navigation, Autoplay]);
 
 // Autoplay.params.autoplay.delay = 100
 
-function SlideShow({ imgAlt }) {
+function SlideShow() {
   const sliderData = useData("http://localhost:3001/slides") || [];
 
   return (
@@ -21,7 +21,7 @@ function SlideShow({ imgAlt }) {
       <div className="container mx-auto">
         <Swiper navigation pagination autoplay loop={true} slidesPerView={1} className="shadow-lg rounded-xl">
           {sliderData.map((item) => (
-            <SwiperSlide>
+            <SwiperSlide key={item.id}>
               <img src={item.picture} alt={item.pictureAlt} key={item.id} className="object-cover h-56 sm:h-64 md:h-92 w-full" />
             </SwiperSlide>
           ))}

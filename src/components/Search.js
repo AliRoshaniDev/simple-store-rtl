@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { ReactSVG } from "react-svg";
 import useSetProducts from "../hooks/useSetProducts";
+import { useHistory } from "react-router-dom";
 
 import searchIco from "../assets/images/svg/search.svg";
 
 function Search() {
+  const history = useHistory();
   const [inputFocus, setInputFocus] = useState(false);
 
   const setProducts = useSetProducts();
-
   let delayTimer;
   const handleInputChange = (event) => {
     clearTimeout(delayTimer);
     delayTimer = setTimeout(() => {
+      history.push("/page/1");
       setProducts("searchInput", event.target.value);
     }, 500);
   };
