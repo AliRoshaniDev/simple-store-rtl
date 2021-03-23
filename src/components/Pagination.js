@@ -7,18 +7,6 @@ function Pagination() {
 
   const pageNumbersArray = [];
   for (let i = 1; i <= totalPageNumber; i++) {
-    // if (totalPageNumber > 5) {
-    //   i === 1 && pageNumbersArray.push({ body: i, pageNumber: i });
-    //   i === currentPageNumber && pageNumbersArray.push({ body: i, pageNumber: i });
-    //   i === currentPageNumber - 1 && pageNumbersArray.push({ body: i, pageNumber: i });
-    //   i === currentPageNumber + 1 && pageNumbersArray.push({ body: i, pageNumber: i });
-    //   i === currentPageNumber + 2 && pageNumbersArray.push({ body: "...", disabled: true });
-    //   i === totalPageNumber && pageNumbersArray.push({ body: i, pageNumber: i });
-    //   console.log(currentPageNumber);
-    // }
-    // if (totalPageNumber <= 5) {
-    //   pageNumbersArray.push({ body: i, pageNumber: i });
-    // }
     pageNumbersArray.push({ body: i, pageNumber: i, currentPageNumber });
   }
 

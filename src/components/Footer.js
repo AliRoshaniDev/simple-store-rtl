@@ -3,10 +3,10 @@ import React from "react";
 function Footer() {
   return (
     <footer>
-      <section className="flex justify-center text-2xl font-bold py-5">
+      <section className="flex justify-center text-xl font-bold py-5">
         <div className="flex items-center">
           <span>
-            <img src="/images/code.png" className="w-8 mr-2" alt="code" />
+            <img src="/images/code.png" className="w-6 mr-2" alt="code" />
           </span>
           by
           <a href="https://github.com/alimoallem27" className="px-2 text-mycolor-dark">
@@ -14,7 +14,7 @@ function Footer() {
           </a>
           at
           <span>
-            <img src="/images/night.png" className="w-7 ml-2" alt="night" />
+            <img src="/images/night.png" className="w-5 ml-2" alt="night" />
           </span>
         </div>
       </section>
