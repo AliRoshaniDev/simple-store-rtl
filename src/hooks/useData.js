@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+//This hook is used to receive data by url
 function useData(url) {
   const [data, setData] = useState();
 

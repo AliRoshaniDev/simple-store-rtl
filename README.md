@@ -18,11 +18,11 @@ a simple RTL store written with React
 
 ## Features
 
-- Cart: The main feature of this store is its cart. Apart from the main function, this cart has two special features:
+- Cart: The main feature of this store is its cart. Apart from the main function, this cart has two additional features:
 
 1. Store the cart in the local storage and use it for later times if the shopping cart is not finalized
 
-2. Synchronize cart information between different tabs
+2. Synchronize cart data between different tabs
 
 - Product items do not depend on the size of the photo of the products. This means that if the picture is square or rectangular, it does not affect the size of the box of products
 

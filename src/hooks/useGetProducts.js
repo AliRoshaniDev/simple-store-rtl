@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { ProductContext } from "../providers/ProductProvider";
 import useData from "./useData";
 
+//This hook is used to receive product data based on ProductProvider state
 function useGetProducts() {
   const { pageNumber } = useParams();
   const productStatus = useContext(ProductContext);
