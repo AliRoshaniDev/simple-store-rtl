@@ -1,18 +1,11 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext } from "react";
+import useCartState from "../hooks/useCartState";
 
 export const CartContext = createContext();
 export const SetCartContext = createContext();
 
 function CartProvider({ children }) {
-  const initialCart = JSON.parse(localStorage.getItem("cart")) || [];
-  let [cartData, setCartData] = useState(initialCart);
-
-  const channel = React.useMemo(() => new BroadcastChannel("cart_data"), []);
-
-  useEffect(() => {
-    channel.onmessage = (message) => setCartData(message.data);
-    localStorage.setItem("cart", JSON.stringify(cartData));
-  }, [cartData, channel]);
+  let [cartData, setCartData] = useCartState();
 
   return (
     <CartContext.Provider value={cartData}>
