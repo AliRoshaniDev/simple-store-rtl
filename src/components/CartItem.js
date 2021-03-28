@@ -6,10 +6,10 @@ import useSetCartData from "../hooks/useSetCartData";
 import closeIco from "../assets/images/svg/close.svg";
 
 function CartItem({ name, price, numberAdded, picture, id }) {
-  const setCartData = useSetCartData();
+  const { deleteOne } = useSetCartData();
 
   const handleDeleteItem = () => {
-    setCartData(id, "DELETE");
+    deleteOne(id);
   };
 
   return (
@@ -23,7 +23,7 @@ function CartItem({ name, price, numberAdded, picture, id }) {
           <span className="text-gray-400">{price} ريال</span>
           <span className="text-gray-400">{`${numberAdded} عدد`}</span>
         </div>
-        <div className="w-8 h-8 p-2 bg-transparent hover:bg-mycolor-dark group rounded-lg transition duration-200 ease-in-out" onClick={handleDeleteItem}>
+        <div onClick={handleDeleteItem} className="w-8 h-8 p-2 bg-transparent hover:bg-mycolor-dark group rounded-lg transition duration-200 ease-in-out">
           <ReactSVG src={closeIco} className="w-4 h-4 fill-current group-hover:text-mycolor-light transition duration-200 ease-in-out" />
         </div>
       </div>

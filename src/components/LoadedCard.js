@@ -8,11 +8,11 @@ import soldOutIco from "../assets/images/png/soldout.png";
 
 function LoadedCard({ name, price, number, picture, id }) {
   const [playAnimation, setPlayAnimation] = useState(false);
-  const setCartData = useSetCartData();
+  const { addOne } = useSetCartData();
 
   const handleAddCart = () => {
     if (number > 0) {
-      setCartData({ name, price, numberAdded: 1, picture, id });
+      addOne({ name, price, numberAdded: 1, picture, id });
       setPlayAnimation(true);
       setTimeout(() => {
         setPlayAnimation(false);

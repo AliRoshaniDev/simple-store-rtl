@@ -3,12 +3,12 @@ import useSetCartData from "../hooks/useSetCartData";
 import useTotal from "../hooks/useTotal";
 
 function CartTotalItem() {
-  const setCartData = useSetCartData();
+  const { deleteAll } = useSetCartData();
   const calcualteTotal = useTotal();
 
   const handleAddCart = (event) => {
     event.stopPropagation();
-    setCartData("ALL", "DELETE");
+    deleteAll();
   };
 
   return (
