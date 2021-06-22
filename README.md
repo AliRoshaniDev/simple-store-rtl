@@ -1,4 +1,4 @@
-# Twitter fronted clone
+# Simple Store
 
 a simple RTL store written with React
 
