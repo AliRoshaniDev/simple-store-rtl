@@ -1,77 +1,34 @@
-# Simple Store
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-a simple RTL store written with React
+## Getting Started
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+First, run the development server:
 
-[![GitHub contributors](https://img.shields.io/github/contributors/AliMoallem27/simple-store-rtl.svg)](https://github.com/AliMoallem27/simple-store-rtl/graphs/contributors/)
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-![demo image](https://raw.githubusercontent.com/AliMoallem27/simple-store-rtl/main/public/images/demo.png)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- built using [React](https://reactjs.org/)
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-- bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.tsx`.
 
-- styled with [tailwindcss](https://tailwindcss.com/)
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-- Fully responsive
+## Learn More
 
-## Features
+To learn more about Next.js, take a look at the following resources:
 
-- Cart: The main feature of this store is its cart. Apart from the main function, this cart has two additional features:
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-1. Store the cart in the local storage and use it for later times if the shopping cart is not finalized
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-2. Synchronize cart data between different tabs
+## Deploy on Vercel
 
-- Product items do not depend on the size of the photo of the products. This means that if the picture is square or rectangular, it does not affect the size of the box of products
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- Ability to categorize, filter and search among items
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `json-server --watch db.json --port 3001`
-
-### `npm start`
-
-Server url: [http://localhost:3001](http://localhost:3001)
-
-Runs the app in the development mode.\
-
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-To know about the server: [json-server](https://www.npmjs.com/package/json-server)
-
-The page will reload if you make edits.\
-
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
