@@ -1,7 +1,0 @@
-@import "./assets/fonts/vazir-latin/font-face.css";
-@import "./assets/fonts/vazir-farsi/font-face.css";
-
-/* Default font is vazir farsi digit */
-body {
-  font-family: "Vazir-FarsiDigit";
-}
