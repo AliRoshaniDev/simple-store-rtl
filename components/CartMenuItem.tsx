@@ -1,11 +1,11 @@
-import React from "react";
+import useSetCartData from "../hooks/useSetCartData";
+import Image from "next/image";
 import { ReactSVG } from "react-svg";
 
-import useSetCartData from "../hooks/useSetCartData";
+type CartItemTypes = { name: string; price: number; numberAdded: number; picture: string; id: number };
 
-import closeIco from "../assets/images/svg/close.svg";
-
-function CartItem({ name, price, numberAdded, picture, id }) {
+export default function CartMenuItem(props: CartItemTypes) {
+  const { name, price, numberAdded, picture, id } = props;
   const { deleteOne } = useSetCartData();
 
   const handleDeleteItem = () => {
@@ -16,7 +16,7 @@ function CartItem({ name, price, numberAdded, picture, id }) {
     <div className="h-24 mb-1 text-right w-full whitespace-no-wrap rounded-lg text-base text-gray-600 hover:text-gray-800 hover:bg-mycolor-light transition duration-200 ease-in-out">
       <div className="flex items-center px-2 h-full">
         <figure className="h-20 w-20">
-          <img className="object-cover h-20 w-full rounded-lg" src={picture} alt={name} />
+          <Image className="object-cover h-20 w-full rounded-lg" src={picture} width={80} height={80} alt={name} />
         </figure>
         <div className="w-cartItemText flex flex-col pr-2">
           <span className="whitespace-nowrap text-gray-700 overflow-hidden font-vazir-latin">{name}</span>
@@ -24,11 +24,9 @@ function CartItem({ name, price, numberAdded, picture, id }) {
           <span className="text-gray-400">{`${numberAdded} عدد`}</span>
         </div>
         <div onClick={handleDeleteItem} className="w-8 h-8 p-2 bg-transparent hover:bg-mycolor-dark group rounded-lg transition duration-200 ease-in-out">
-          <ReactSVG src={closeIco} className="w-4 h-4 fill-current group-hover:text-mycolor-light transition duration-200 ease-in-out" />
+          <ReactSVG src="/images/icons/close.svg" className="w-4 h-4 fill-current group-hover:text-mycolor-light transition duration-200 ease-in-out" />
         </div>
       </div>
     </div>
   );
 }
-
-export default CartItem;

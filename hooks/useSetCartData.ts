@@ -1,32 +1,33 @@
 import { useContext, useMemo } from "react";
 import { SetCartContext } from "../providers/CartProvider";
+import { CartDataType, ProductType } from "../types/index";
 
 function useSetCartData() {
   const setCartData = useContext(SetCartContext);
   const channel = useMemo(() => new BroadcastChannel("cart_data"), []);
 
-  let cartData;
+  let cartData: CartDataType | [];
 
   function deleteAll() {
-    setCartData(() => {
+    setCartData!(() => {
       cartData = [];
       channel.postMessage(cartData);
       return cartData;
     });
   }
 
-  function deleteOne(inputValue) {
+  function deleteOne(inputValue: number) {
     // this inputValue is "id" of item(product) Which we want to delete
-    setCartData((preCart) => {
+    setCartData!((preCart) => {
       cartData = preCart.filter((item) => item.id !== inputValue);
       channel.postMessage(cartData);
       return cartData;
     });
   }
 
-  function addOne(inputValue) {
+  function addOne(inputValue: ProductType) {
     // this inputValue is a objcet of item(product) Which we want to add
-    setCartData((preCart) => {
+    setCartData!((preCart) => {
       let itemWasBefore = false;
       for (const addedProduct of preCart) {
         if (addedProduct.id === inputValue.id) {
