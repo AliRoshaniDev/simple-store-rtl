@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 
 import NavBar from "../components/NavBar";
-// import CartProvider from "../providers/CartProvider";
+import AuthProvider from "../providers/AuthProvider";
 
 import dynamic from "next/dynamic";
 
@@ -38,10 +38,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:image" content="/images/favicons/logo512.png" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <DynamicCartProviderWithNoSSR>
-        <NavBar />
-        <Component {...pageProps} />
-      </DynamicCartProviderWithNoSSR>
+      <AuthProvider>
+        <DynamicCartProviderWithNoSSR>
+          <NavBar />
+          <Component {...pageProps} />
+        </DynamicCartProviderWithNoSSR>
+      </AuthProvider>
     </>
   );
 }

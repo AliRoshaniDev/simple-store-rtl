@@ -24,3 +24,12 @@ export type ProductType = {
 export type ChildrenType = {
   children: ReactNode;
 };
+
+export interface AuthProps {
+  token: {
+    access_token: string;
+  };
+  user_metadata: {
+    full_name: string;
+  };
+}
