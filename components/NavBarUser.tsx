@@ -1,12 +1,19 @@
 import { ReactSVG } from "react-svg";
+import useAuth from "../hooks/useAuth";
+import useHoverElement from "../hooks/useHoverElement";
+import { LegacyRef } from "react";
 
 export default function NavBarUser() {
+  const { authData, open, logout } = useAuth();
+  const [element, userIsHover] = useHoverElement();
+
   return (
-    <div className="justify-self-end h-full cursor-pointer py-2 xl:py-3">
-      <div className="flex items-center h-full bg-transparent hover:bg-mycolor-light rounded-lg transition duration-300 ease-in-out px-3">
-        <span className="mr-2 hidden lg:inline">ورود</span>
+    <div ref={element as LegacyRef<HTMLDivElement>} className="justify-self-end h-full cursor-pointer py-2 xl:py-3">
+      <div className={`flex items-center h-full bg-transparent hover:bg-mycolor-light ${userIsHover && "bg-mycolor-light"} rounded-lg transition duration-300 ease-in-out px-3`}>
+        <span className="mr-2 hidden lg:inline">{authData ? authData.user_metadata.full_name : "حساب کاربری"}</span>
         <ReactSVG src="/images/icons/person.svg" />
       </div>
+      {/* {userIsHover && <CartList />} */}
     </div>
   );
 }

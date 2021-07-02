@@ -6,9 +6,5 @@ import FillCartList from "./FillCartList";
 export default function CartList() {
   const cartData = useCartData();
 
-  return (
-    <>
-      <DropMenu type="cart">{!cartData ? <EmptyCartList /> : <FillCartList />}</DropMenu>
-    </>
-  );
+  return <DropMenu type="cart">{!cartData ? <EmptyCartList /> : <FillCartList />}</DropMenu>;
 }
