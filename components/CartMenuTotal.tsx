@@ -1,6 +1,7 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import useSetCartData from "../hooks/useSetCartData";
 import useCartTotal from "../hooks/useCartTotal";
+import Btn from "./Btn";
 
 function CartTotalItem() {
   const { deleteAll } = useSetCartData();
@@ -24,9 +25,10 @@ function CartTotalItem() {
         </div>
       </div>
       <div className="pt-2">
-        <button onClick={handleAddCart} className="w-full h-10 text-mycolor-dark bg-mycolor-light hover:text-mycolor-light hover:bg-mycolor-dark rounded-lg transition duration-200 ease-in-out">
+        <Btn onClick={(e: React.MouseEvent<HTMLElement>) => handleAddCart(e)} text="نهایی کردن خرید" type="secondary" size="full" />
+        {/* <button onClick={handleAddCart} className="w-full h-10 text-mycolor-dark bg-mycolor-light hover:text-mycolor-light hover:bg-mycolor-dark rounded-lg transition duration-200 ease-in-out">
           نهایی کردن خرید
-        </button>
+        </button> */}
       </div>
     </div>
   );
