@@ -44,6 +44,8 @@ module.exports = {
       },
       width: {
         cartItemText: "calc(100% - 7rem)",
+        userItemText: "calc(100% - 3.5rem)",
+        "1/2-less": "calc(50% - 0.25rem)",
       },
       fontFamily: {
         "vazir-latin": "Vazir",
