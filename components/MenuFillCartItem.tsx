@@ -4,7 +4,7 @@ import { ReactSVG } from "react-svg";
 
 type CartItemTypes = { name: string; price: number; numberAdded: number; picture: string; id: number };
 
-export default function CartMenuItem(props: CartItemTypes) {
+export default function MenuFillCartItem(props: CartItemTypes) {
   const { name, price, numberAdded, picture, id } = props;
   const { deleteOne } = useSetCartData();
 
