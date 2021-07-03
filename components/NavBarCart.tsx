@@ -1,11 +1,12 @@
 import { ReactSVG } from "react-svg";
-
 import { LegacyRef } from "react";
 
 import Badge from "./Badge";
-import CartList from "./CartList";
 import useCartData from "../hooks/useCartData";
 import useHoverElement from "../hooks/useHoverElement";
+import DropMenu from "./DropMenu";
+import MenuEmptyCart from "./MenuEmptyCart";
+import MenuFillCart from "./MenuFillCart";
 
 export default function NavBarCart() {
   const [element, cartIsHover] = useHoverElement();
@@ -18,7 +19,7 @@ export default function NavBarCart() {
         <span className="mr-2 hidden lg:inline">سبد خرید</span>
         <ReactSVG src="/images/icons/cart.svg" />
       </div>
-      {cartIsHover && <CartList />}
+      {cartIsHover && <DropMenu type="cart">{!cartData ? <MenuEmptyCart /> : <MenuFillCart />}</DropMenu>}
     </div>
   );
 }
