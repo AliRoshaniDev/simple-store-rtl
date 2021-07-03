@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode, MouseEvent } from "react";
 
 export interface BadgeInputInterface {
   number: number;
@@ -32,4 +32,12 @@ export interface AuthProps {
   user_metadata: {
     full_name: string;
   };
+  email: string;
 }
+
+export type BtnProps = {
+  onClick: (e: React.MouseEvent<HTMLElement>) => void;
+  text: string;
+  type: "primary" | "secondary";
+  size: "full" | "half";
+};
