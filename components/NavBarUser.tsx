@@ -7,7 +7,7 @@ import MenuUserInfo from "./MenuUserInfo";
 import MenuLoginInfo from "./MenuLoginInfo";
 
 export default function NavBarUser() {
-  const { authData, open, logout } = useAuth();
+  const { authData } = useAuth();
   const [element, userIsHover] = useHoverElement();
 
   return (

@@ -3,7 +3,7 @@ import useSetCartData from "../hooks/useSetCartData";
 import useCartTotal from "../hooks/useCartTotal";
 import Btn from "./Btn";
 
-function CartTotalItem() {
+function MenuFillCartTotal() {
   const { deleteAll } = useSetCartData();
   const calcualteTotal = useCartTotal();
 
@@ -26,12 +26,9 @@ function CartTotalItem() {
       </div>
       <div className="pt-2">
         <Btn onClick={(e: React.MouseEvent<HTMLElement>) => handleAddCart(e)} text="نهایی کردن خرید" type="secondary" size="full" />
-        {/* <button onClick={handleAddCart} className="w-full h-10 text-mycolor-dark bg-mycolor-light hover:text-mycolor-light hover:bg-mycolor-dark rounded-lg transition duration-200 ease-in-out">
-          نهایی کردن خرید
-        </button> */}
       </div>
     </div>
   );
 }
 
-export default CartTotalItem;
+export default MenuFillCartTotal;
