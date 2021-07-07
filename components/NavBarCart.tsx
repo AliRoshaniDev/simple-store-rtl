@@ -19,7 +19,7 @@ export default function NavBarCart() {
         <span className="mr-2 hidden lg:inline">سبد خرید</span>
         <ReactSVG src="/images/icons/cart.svg" />
       </div>
-      {cartIsHover && <DropMenu type="cart">{!cartData ? <MenuEmptyCart /> : <MenuFillCart />}</DropMenu>}
+      {cartIsHover && <DropMenu type="cart">{!cartData || cartData.length === 0 ? <MenuEmptyCart /> : <MenuFillCart />}</DropMenu>}
     </div>
   );
 }
