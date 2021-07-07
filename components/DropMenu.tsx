@@ -17,7 +17,7 @@ export default function DropMenu(props: ChildrenType & { type: "cart" | "filter"
       break;
     case "user":
       xAdjustment = "top-13 -right-2";
-      widthAdjustment = "w-72 sm:w-80";
+      widthAdjustment = "w-64 sm:w-72";
       break;
   }
   return (
