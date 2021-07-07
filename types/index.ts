@@ -41,3 +41,5 @@ export type BtnProps = {
   type: "primary" | "secondary";
   size: "full" | "half";
 };
+
+export type DropMenuProps = { xAdjustment: string; widthAdjustment: string };

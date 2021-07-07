@@ -16,7 +16,11 @@ export default function NavBarUser() {
         <span className="mr-2 hidden lg:inline">{authData ? authData.user_metadata.full_name : "حساب کاربری"}</span>
         <ReactSVG src="/images/icons/person.svg" />
       </div>
-      {userIsHover && <DropMenu type="user">{authData ? <MenuUserInfo /> : <MenuLoginInfo />}</DropMenu>}
+      {userIsHover && (
+        <DropMenu xAdjustment="top-13 -right-2" widthAdjustment="w-64 sm:w-72">
+          {authData ? <MenuUserInfo /> : <MenuLoginInfo />}
+        </DropMenu>
+      )}
     </div>
   );
 }
