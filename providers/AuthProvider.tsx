@@ -1,16 +1,16 @@
 import { createContext, useState, useEffect } from "react";
-import { ChildrenType, AuthProps } from "../types/index";
+import { ChildrenType } from "../types/index";
 import { SetStateAction, Dispatch } from "react";
-import netlifyIdentity from "netlify-identity-widget";
+import netlifyIdentity, { User } from "netlify-identity-widget";
 
-export const AuthContext = createContext<AuthProps | null>(null);
-export const SetAuthContext = createContext<Dispatch<SetStateAction<AuthProps>> | null>(null);
+export const AuthContext = createContext<User | null>(null);
+export const SetAuthContext = createContext<Dispatch<SetStateAction<User>> | null>(null);
 // export const SetAuthContext = createContext<Dispatch<SetStateAction<AuthProps>>>(Object as Dispatch<SetStateAction<AuthProps>>);
 
 export default function AuthProvider(props: ChildrenType) {
   const { children } = props;
 
-  let [authData, setAuthData] = useState<AuthProps | null>(null);
+  let [authData, setAuthData] = useState<User | null>(null);
 
   useEffect(() => {
     netlifyIdentity.on("logout", () => {
@@ -18,13 +18,13 @@ export default function AuthProvider(props: ChildrenType) {
       console.log("logout Event");
     });
 
-    netlifyIdentity.on("login", (user: AuthProps) => {
+    netlifyIdentity.on("login", (user: User) => {
       setAuthData(user);
       netlifyIdentity.close();
       console.log("login Event");
     });
 
-    netlifyIdentity.on("init", (user: AuthProps) => {
+    netlifyIdentity.on("init", (user: User | null) => {
       setAuthData(user);
       console.log("init Event");
     });
@@ -41,7 +41,7 @@ export default function AuthProvider(props: ChildrenType) {
 
   return (
     <AuthContext.Provider value={authData}>
-      <SetAuthContext.Provider value={setAuthData as Dispatch<SetStateAction<AuthProps>>}>{children}</SetAuthContext.Provider>
+      <SetAuthContext.Provider value={setAuthData as Dispatch<SetStateAction<User>>}>{children}</SetAuthContext.Provider>
     </AuthContext.Provider>
   );
 }

@@ -25,16 +25,6 @@ export type ChildrenType = {
   children: ReactNode;
 };
 
-export interface AuthProps {
-  token: {
-    access_token: string;
-  };
-  user_metadata: {
-    full_name: string;
-  };
-  email: string;
-}
-
 export type BtnProps = {
   onClick: (e: React.MouseEvent<HTMLElement>) => void;
   text: string;
