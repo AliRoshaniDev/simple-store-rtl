@@ -6,8 +6,8 @@ export default function useAuth() {
   const authData = useContext(AuthContext);
   const setAuthData = useContext(SetAuthContext);
 
-  function open() {
-    netlifyIdentity.open();
+  function open(tabName: "login" | "signup") {
+    netlifyIdentity.open(tabName);
   }
 
   function logout() {

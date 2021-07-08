@@ -18,8 +18,8 @@ export default function MenuLoginInfo() {
         </div>
       </div>
       <div className="pt-2 border-t-2 border-gray-100 flex justify-between">
-        <Btn onClick={() => open()} text="ورود" type="primary" size="half" />
-        <Btn onClick={() => open()} text="ثبت نام" type="secondary" size="half" />
+        <Btn onClick={() => open("login")} text="ورود" type="primary" size="half" />
+        <Btn onClick={() => open("signup")} text="ثبت نام" type="secondary" size="half" />
       </div>
     </div>
   );
