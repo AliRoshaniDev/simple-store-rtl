@@ -1,26 +1,26 @@
 import { ReactSVG } from "react-svg";
 import useAuth from "../hooks/useAuth";
-import useHoverElement from "../hooks/useHoverElement";
+import useFocusElement from "../hooks/useFocusElement";
 import { LegacyRef } from "react";
 import DropMenu from "./DropMenu";
-import MenuUserInfo from "./MenuUserInfo";
+import MenuProfileInfo from "./MenuProfileInfo";
 import MenuLoginInfo from "./MenuLoginInfo";
 
 export default function NavBarUser() {
-  const { authData } = useAuth();
-  const [element, userIsHover] = useHoverElement();
+  const { isLoggedIn, user } = useAuth();
+  const [parentElement, childElement, userIsHover] = useFocusElement();
 
   return (
-    <div ref={element as LegacyRef<HTMLDivElement>} className="justify-self-end h-full cursor-pointer py-2 xl:py-3 relative">
+    <div ref={parentElement as LegacyRef<HTMLDivElement>} className="justify-self-end h-full cursor-pointer py-2 xl:py-3 relative">
       <div className={`flex items-center h-full bg-transparent hover:bg-mycolor-light ${userIsHover && "bg-mycolor-light"} rounded-lg transition duration-300 ease-in-out px-3`}>
-        <span className="mr-2 hidden lg:inline">{authData ? authData.user_metadata.full_name : "حساب کاربری"}</span>
+        <span className="mr-2 hidden lg:inline">{user ? user!.user_metadata.full_name : "حساب کاربری"}</span>
         <ReactSVG src="/images/icons/person.svg" />
       </div>
-      {userIsHover && (
-        <DropMenu xAdjustment="top-13 -right-2" widthAdjustment="w-64 sm:w-72">
-          {authData ? <MenuUserInfo /> : <MenuLoginInfo />}
+      <div ref={childElement as LegacyRef<HTMLDivElement>}>
+        <DropMenu hidden={!userIsHover} xAdjustment="top-13 -right-2" widthAdjustment="w-64 sm:w-72">
+          {isLoggedIn ? <MenuProfileInfo /> : <MenuLoginInfo />}
         </DropMenu>
-      )}
+      </div>
     </div>
   );
 }
