@@ -2,7 +2,7 @@ import Image from "next/image";
 import useAuth from "../hooks/useAuth";
 import Btn from "./Btn";
 
-export default function MenuProfileInfo() {
+export default function MenuProfile() {
   const { user, logout } = useAuth();
 
   return (

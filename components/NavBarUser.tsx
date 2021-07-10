@@ -3,7 +3,7 @@ import useAuth from "../hooks/useAuth";
 import useFocusElement from "../hooks/useFocusElement";
 import { LegacyRef } from "react";
 import DropMenu from "./DropMenu";
-import MenuProfileInfo from "./MenuProfileInfo";
+import MenuProfile from "./MenuProfile";
 import MenuAuth from "./MenuAuth";
 
 export default function NavBarUser() {
@@ -18,7 +18,7 @@ export default function NavBarUser() {
       </div>
       <div ref={childElement as LegacyRef<HTMLDivElement>}>
         <DropMenu hidden={!userIsHover} xAdjustment="top-13 -right-2" widthAdjustment="w-64 sm:w-72">
-          {isLoggedIn ? <MenuProfileInfo /> : <MenuAuth />}
+          {isLoggedIn ? <MenuProfile /> : <MenuAuth />}
         </DropMenu>
       </div>
     </div>
