@@ -14,7 +14,9 @@ export default function MenuProfile() {
           </figure>
           <div className="w-userItemText flex flex-col pr-2">
             <span className="whitespace-nowrap text-gray-700 overflow-hidden font-vazir-latin">{user!.user_metadata.full_name}</span>
-            <span className="text-gray-400 font-vazir-lati">{user!.email}</span>
+            <span dir="ltr" className="text-gray-400 font-vazir-latin whitespace-nowrap truncate">
+              {user!.email}
+            </span>
           </div>
         </div>
       </div>
