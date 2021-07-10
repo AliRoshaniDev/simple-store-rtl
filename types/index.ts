@@ -26,7 +26,7 @@ export type ChildrenType = {
 };
 
 export type BtnProps = {
-  onClick: (e: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   text?: string;
   icon?: string;
   optionalStyle?: string;
