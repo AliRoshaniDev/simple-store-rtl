@@ -5,6 +5,7 @@ import { LegacyRef } from "react";
 import DropMenu from "./DropMenu";
 import MenuProfile from "./MenuProfile";
 import MenuAuth from "./MenuAuth";
+import MenuLoading from "./MenuLoading";
 
 export default function NavBarUser() {
   const { isLoggedIn, user } = useAuth();
@@ -13,7 +14,7 @@ export default function NavBarUser() {
   return (
     <div ref={parentElement as LegacyRef<HTMLDivElement>} className="justify-self-end h-full cursor-pointer py-2 xl:py-3 relative">
       <div className={`flex items-center h-full bg-transparent hover:bg-mycolor-light ${userIsHover && "bg-mycolor-light"} rounded-lg transition duration-300 ease-in-out px-3`}>
-        <span className="mr-2 hidden lg:inline">{user ? user!.user_metadata.full_name : "حساب کاربری"}</span>
+        <span className="mr-2 hidden lg:inline font-vazir-latin">{user ? user!.user_metadata.full_name : "حساب کاربری"}</span>
         <ReactSVG src="/images/icons/person.svg" />
       </div>
       <div ref={childElement as LegacyRef<HTMLDivElement>}>
