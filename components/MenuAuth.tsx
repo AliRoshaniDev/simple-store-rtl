@@ -6,7 +6,7 @@ import LoginInputList from "./LoginInputList";
 import { LoginDataTypes, SignupDataTypes } from "../types/index";
 import SignupInputList from "./SignupInputList";
 
-export default function MenuLoginInfo() {
+export default function MenuAuth() {
   const [loginInputs, setLoginInputs] = useState<LoginDataTypes>({ email: "null", password: "null" });
   const [signupInputs, setSignupInputs] = useState<SignupDataTypes>({ email: "null", password: "null", data: { full_name: "null" } });
 
