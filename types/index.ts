@@ -27,9 +27,16 @@ export type ChildrenType = {
 
 export type BtnProps = {
   onClick: (e: React.MouseEvent<HTMLElement>) => void;
-  text: string;
+  text?: string;
+  icon?: string;
+  optionalStyle?: string;
   type: "primary" | "secondary";
-  size: "full" | "half";
+  size: "w-full" | "w-1/2-less" | "w-10" | string;
+  noBorder?: boolean;
 };
 
-export type DropMenuProps = { xAdjustment: string; widthAdjustment: string };
+export type DropMenuProps = { xAdjustment: string; widthAdjustment: string; hidden: boolean };
+
+export type LoginDataTypes = { email: string; password: string };
+
+export type SignupDataTypes = { email: string; password: string; data: { full_name: string } };
