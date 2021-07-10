@@ -3,13 +3,15 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 
 import NavBar from "../components/NavBar";
-import AuthProvider from "../providers/AuthProvider";
 
 import dynamic from "next/dynamic";
+import { IdentityContextProvider } from "react-netlify-identity";
 
 const DynamicCartProviderWithNoSSR = dynamic(() => import("../providers/CartProvider"), { ssr: false });
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const url = "https://fervent-hypatia-b5801d.netlify.app/";
+
   return (
     <>
       <Head>
@@ -38,12 +40,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:image" content="/images/favicons/logo512.png" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <AuthProvider>
+
+      <IdentityContextProvider url={url}>
         <DynamicCartProviderWithNoSSR>
           <NavBar />
           <Component {...pageProps} />
         </DynamicCartProviderWithNoSSR>
-      </AuthProvider>
+      </IdentityContextProvider>
     </>
   );
 }
