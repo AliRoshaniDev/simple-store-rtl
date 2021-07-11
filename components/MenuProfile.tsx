@@ -3,7 +3,12 @@ import useAuth from "../hooks/useAuth";
 import Btn from "./Btn";
 
 export default function MenuProfile() {
-  const { user, logout } = useAuth();
+  const { user, logout, setAuthIsLoading } = useAuth();
+
+  const handleLogout = () => {
+    setAuthIsLoading(true);
+    logout();
+  };
 
   return (
     <div className="max-h-60 overflow-auto">
@@ -21,7 +26,7 @@ export default function MenuProfile() {
         </div>
       </div>
       <div className="pt-2 border-t-2 border-gray-100">
-        <Btn onClick={() => logout()} text="خروج از حساب" type="secondary" size="w-full" />
+        <Btn onClick={() => handleLogout()} text="خروج از حساب" type="secondary" size="w-full" />
       </div>
     </div>
   );

@@ -40,3 +40,5 @@ export type DropMenuProps = { xAdjustment: string; widthAdjustment: string; hidd
 export type LoginDataTypes = { email: string; password: string };
 
 export type SignupDataTypes = { email: string; password: string; data: { full_name: string } };
+
+export type AuthContextType = { authIsLoading: boolean };

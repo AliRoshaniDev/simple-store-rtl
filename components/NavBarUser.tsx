@@ -8,7 +8,7 @@ import MenuAuth from "./MenuAuth";
 import MenuLoading from "./MenuLoading";
 
 export default function NavBarUser() {
-  const { isLoggedIn, user } = useAuth();
+  const { isLoggedIn, user, authIsLoading } = useAuth();
   const [parentElement, childElement, userIsHover] = useFocusElement();
 
   return (
@@ -19,7 +19,7 @@ export default function NavBarUser() {
       </div>
       <div ref={childElement as LegacyRef<HTMLDivElement>}>
         <DropMenu hidden={!userIsHover} xAdjustment="top-13 -right-2" widthAdjustment="w-64 sm:w-72">
-          {isLoggedIn ? <MenuProfile /> : <MenuAuth />}
+          {authIsLoading ? <MenuLoading /> : isLoggedIn ? <MenuProfile /> : <MenuAuth />}
         </DropMenu>
       </div>
     </div>

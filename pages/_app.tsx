@@ -7,6 +7,8 @@ import NavBar from "../components/NavBar";
 import dynamic from "next/dynamic";
 import { IdentityContextProvider } from "react-netlify-identity";
 
+import AuthProvider from "../providers/AuthProvider";
+
 const DynamicCartProviderWithNoSSR = dynamic(() => import("../providers/CartProvider"), { ssr: false });
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -42,10 +44,12 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <IdentityContextProvider url={url}>
-        <DynamicCartProviderWithNoSSR>
-          <NavBar />
-          <Component {...pageProps} />
-        </DynamicCartProviderWithNoSSR>
+        <AuthProvider>
+          <DynamicCartProviderWithNoSSR>
+            <NavBar />
+            <Component {...pageProps} />
+          </DynamicCartProviderWithNoSSR>
+        </AuthProvider>
       </IdentityContextProvider>
     </>
   );

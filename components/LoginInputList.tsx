@@ -1,15 +1,15 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 import Btn from "./Btn";
 import useAuth from "../hooks/useAuth";
 
 export default function LoginInputList() {
-  const { login } = useAuth();
+  const { login, setAuthIsLoading } = useAuth();
 
   const handleSubmitForm = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     const emailValue = (event.target.children[1] as HTMLInputElement).value;
     const passwordValue = (event.target.children[3] as HTMLInputElement).value;
-
+    setAuthIsLoading(true);
     login(emailValue, passwordValue);
   };
 
@@ -22,7 +22,7 @@ export default function LoginInputList() {
       <label htmlFor="password-input" className="ml-auto mb-1">
         رمز عبور:
       </label>
-      <input type="password" required id="password-input" title="لطفا رمز عبور را وارد نمایید" dir="ltr" className="border-2 border-gray-300 focus:border-gray-400 w-full h-10 rounded-lg font-vazir-latin p-2 outline-none" />
+      <input type="password" required id="password-input" title="لطفا رمز عبور را وارد نمایید" dir="ltr" className="border-2 border-gray-300 focus:border-gray-400 w-full h-10 mb-2 rounded-lg font-vazir-latin p-2 outline-none" />
       <div className="pt-2 border-t-2 border-gray-100 flex justify-between">
         <Btn text="ورود" type="primary" size="w-full" />
       </div>
