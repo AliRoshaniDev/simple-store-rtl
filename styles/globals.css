@@ -2,8 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "/fonts/vazir-latin/font-face.css";
-@import "/fonts/vazir-farsi/font-face.css";
+/* Import Swiper styles */
+@import "swiper/swiper.min.css";
+@import "swiper/components/navigation/navigation.min.css";
+/* @import "swiper/components/pagination/pagination.scss"; */
+/* @import "swiper/components/scrollbar/scrollbar.scss"; */
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: rgba(0, 0, 0, 0.192);
+}
 
 /* Default font is vazir farsi digit */
 body {
