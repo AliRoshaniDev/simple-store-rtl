@@ -1,6 +1,5 @@
-// import Image from "next/image";
-// import styles from "../styles/Home.module.css";
+import SlideShow from "../components/SlideShow";
 
 export default function Home() {
-  return <div>Salam</div>;
+  return <SlideShow />;
 }
