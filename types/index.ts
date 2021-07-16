@@ -41,4 +41,4 @@ export type LoginDataTypes = { email: string; password: string };
 
 export type SignupDataTypes = { email: string; password: string; data: { full_name: string } };
 
-export type AuthContextType = { authIsLoading: boolean };
+export type AuthContextType = { authStatus: null | "LOADING" | "ERROR" | "OK" };
