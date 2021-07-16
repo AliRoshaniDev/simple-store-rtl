@@ -5,10 +5,10 @@ import { LegacyRef } from "react";
 import DropMenu from "./DropMenu";
 import MenuProfile from "./MenuProfile";
 import MenuAuth from "./MenuAuth";
-import MenuLoading from "./MenuLoading";
+import MenuMessage from "./MenuMessage";
 
 export default function NavBarUser() {
-  const { isLoggedIn, user, authIsLoading } = useAuth();
+  const { isLoggedIn, user, authStatus } = useAuth();
   const [parentElement, childElement, userIsHover] = useFocusElement();
 
   return (
@@ -19,7 +19,9 @@ export default function NavBarUser() {
       </div>
       <div ref={childElement as LegacyRef<HTMLDivElement>}>
         <DropMenu hidden={!userIsHover} xAdjustment="top-13 -right-2" widthAdjustment="w-64 sm:w-72">
-          {authIsLoading ? <MenuLoading /> : isLoggedIn ? <MenuProfile /> : <MenuAuth />}
+          {authStatus === "ERROR" && <MenuMessage icon="/images/icons/warning.svg" text="این ایمیل در سایت وجود دارد" />}
+          {authStatus === "LOADING" && <MenuMessage icon="/images/icons/loading.svg" text="لطفا کمی صبر نمایید" spin={true} />}
+          {isLoggedIn && authStatus !== "LOADING" ? <MenuProfile /> : authStatus === null && <MenuAuth />}
         </DropMenu>
       </div>
     </div>

@@ -3,14 +3,14 @@ import Btn from "./Btn";
 import useAuth from "../hooks/useAuth";
 
 export default function SignupInputList() {
-  const { signup, setAuthIsLoading } = useAuth();
+  const { signup, setAuthStatus } = useAuth();
 
   const handleSubmitForm = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nameValue = (event.target.children[1] as HTMLInputElement).value;
     const emailValue = (event.target.children[3] as HTMLInputElement).value;
     const passwordValue = (event.target.children[5] as HTMLInputElement).value;
-    setAuthIsLoading(true);
+    setAuthStatus("LOADING");
     signup(emailValue, passwordValue, { full_name: nameValue });
   };
 

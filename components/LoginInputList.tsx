@@ -3,13 +3,13 @@ import Btn from "./Btn";
 import useAuth from "../hooks/useAuth";
 
 export default function LoginInputList() {
-  const { login, setAuthIsLoading } = useAuth();
+  const { login, setAuthStatus } = useAuth();
 
   const handleSubmitForm = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     const emailValue = (event.target.children[1] as HTMLInputElement).value;
     const passwordValue = (event.target.children[3] as HTMLInputElement).value;
-    setAuthIsLoading(true);
+    setAuthStatus("LOADING");
     login(emailValue, passwordValue);
   };
 

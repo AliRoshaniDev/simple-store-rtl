@@ -3,26 +3,30 @@ import { useIdentityContext } from "react-netlify-identity";
 import { AuthContext, SetAuthContext } from "../providers/AuthProvider";
 
 export default function useAuth() {
-  const { signupUser, loginUser, isLoggedIn, user, logoutUser } = useIdentityContext();
+  const { signupUser, loginUser, isLoggedIn, user, logoutUser, setUser } = useIdentityContext();
 
-  const { authIsLoading } = useContext(AuthContext);
+  const { authStatus } = useContext(AuthContext);
   const setAuthContext = useContext(SetAuthContext);
 
   function login(email: string, password: string, remember: boolean = true) {
-    loginUser(email, password, remember);
+    loginUser(email, password, remember).catch(() => setAuthStatus("ERROR"));
   }
 
   function signup(email: string, password: string, data: Object = {}, directLogin: boolean = true) {
-    signupUser(email, password, data, directLogin);
+    signupUser(email, password, data, directLogin).catch(() => setAuthStatus("ERROR"));
   }
 
   function logout() {
-    logoutUser();
+    try {
+      logoutUser();
+    } catch (error) {
+      setUser(undefined);
+    }
   }
 
-  function setAuthIsLoading(inputValue: boolean) {
-    if (setAuthContext) setAuthContext((previousState) => ({ ...previousState, authIsLoading: inputValue }));
+  function setAuthStatus(inputValue: "LOADING" | "ERROR" | "OK" | null) {
+    if (setAuthContext) setAuthContext((previousState) => ({ ...previousState, authStatus: inputValue }));
   }
 
-  return { login, signup, logout, isLoggedIn, user, authIsLoading, setAuthIsLoading };
+  return { login, signup, logout, isLoggedIn, user, authStatus, setAuthStatus };
 }

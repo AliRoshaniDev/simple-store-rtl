@@ -3,10 +3,10 @@ import useAuth from "../hooks/useAuth";
 import Btn from "./Btn";
 
 export default function MenuProfile() {
-  const { user, logout, setAuthIsLoading } = useAuth();
+  const { user, logout, setAuthStatus } = useAuth();
 
   const handleLogout = () => {
-    setAuthIsLoading(true);
+    setAuthStatus("LOADING");
     logout();
   };
 
