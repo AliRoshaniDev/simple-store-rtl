@@ -13,8 +13,8 @@ export default function MenuAuth() {
       <div className="min-h-48 text-right w-full whitespace-no-wrap rounded-lg text-sm md:text-base text-gray-600 hover:text-gray-800">
         <div className="flex flex-col py-2 pb-0 h-full">
           <div className="flex flex-col items-center">
-            {userStatus === null && <EmojiAndText text="لطفا وارد شوید یا ثبت نام کنید" emoji="/images/icons/smile.png" />}
-            {userStatus !== null && <Btn onClick={() => setUserStatus(null)} icon="/images/..." type="secondary" size="w-10" optionalStyle="mr-auto" noBorder={true} />}
+            {userStatus === null && <EmojiAndText text="لطفا وارد شوید یا ثبت نام کنید" emoji="/images/icons/smile.svg" />}
+            {userStatus !== null && <Btn onClick={() => setUserStatus(null)} icon="/images/icons/close.svg" type="secondary" size="w-10" optionalStyle="mr-auto" noBorder={true} />}
             {userStatus === "login" && <LoginInputList />}
             {userStatus === "signup" && <SignupInputList />}
           </div>
