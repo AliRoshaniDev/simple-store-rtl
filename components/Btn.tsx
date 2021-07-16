@@ -6,7 +6,7 @@ export default function Btn(props: BtnProps) {
 
   return (
     <button onClick={onClick} className={`${size} ${optionalStyle} h-10 ${type === "secondary" ? `text-mycolor-dark bg-mycolor-light ${!noBorder && "border-2 border-mycolor-dark"} hover:text-mycolor-light hover:bg-mycolor-dark` : type === "primary" && "text-mycolor-light bg-mycolor-dark"} rounded-lg group transition duration-200 ease-in-out flex justify-center items-center`}>
-      {icon ? <ReactSVG src="/images/icons/close.svg" className="w-4 h-4 fill-current text-mycolor-dark group-hover:text-mycolor-light transition duration-200 ease-in-out" /> : text}
+      {icon ? <ReactSVG src={icon} className="w-4 h-4 fill-current text-mycolor-dark group-hover:text-mycolor-light transition duration-200 ease-in-out" /> : text}
     </button>
   );
 }
