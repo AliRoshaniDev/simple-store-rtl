@@ -6,6 +6,10 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fontFamily: {
+      // Default font is vazir farsi digit
+      sans: ["Vazir-FarsiDigit"],
+    },
     extend: {
       colors: {
         "cupcake-light": "#FFF5C1",
