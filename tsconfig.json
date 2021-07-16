@@ -16,5 +16,6 @@
     // "noImplicitAny": false
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  // "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "api-functions/slides.js"],
   "exclude": ["node_modules"]
 }
