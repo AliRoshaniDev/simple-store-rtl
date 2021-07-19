@@ -19,7 +19,7 @@ export default function NavBarUser() {
       </div>
       <div ref={childElement as LegacyRef<HTMLDivElement>}>
         <DropMenu hidden={!userIsHover} xAdjustment="top-13 -right-2" widthAdjustment="w-64 sm:w-72">
-          {authStatus === "ERROR" && <MenuMessage icon="/images/icons/warning.svg" text="این ایمیل در سایت وجود دارد" />}
+          {authStatus === "ERROR" && <MenuMessage icon="/images/icons/warning.svg" text="خطایی رخ داده است" />}
           {authStatus === "LOADING" && <MenuMessage icon="/images/icons/loading.svg" text="لطفا کمی صبر نمایید" spin={true} />}
           {isLoggedIn && authStatus !== "LOADING" ? <MenuProfile /> : authStatus === null && <MenuAuth />}
         </DropMenu>
