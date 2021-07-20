@@ -1,7 +1,7 @@
 import React, { ReactNode, MouseEvent } from "react";
 
 export interface BadgeInputInterface {
-  number: number;
+  number?: number;
   size: "big" | "small";
 }
 
@@ -31,7 +31,8 @@ export type BtnProps = {
   icon?: string;
   optionalStyle?: string;
   type: "primary" | "secondary";
-  size: "w-full" | "w-1/2-less" | "w-10" | string;
+  width: "w-full" | "w-1/2-less" | "w-10" | string;
+  height?: string;
   noBorder?: boolean;
 };
 
@@ -42,3 +43,35 @@ export type LoginDataTypes = { email: string; password: string };
 export type SignupDataTypes = { email: string; password: string; data: { full_name: string } };
 
 export type AuthContextType = { authStatus: null | "LOADING" | "ERROR" | "OK" };
+
+export interface actionInterface {
+  type: string;
+  payload: {
+    query?: string;
+    filterKey?: string;
+    status?: string | boolean;
+  };
+}
+
+export interface queryInterface {
+  query?: string;
+}
+
+export type filterKeyInterface = {
+  [filterKey: string]: string[] | string | boolean;
+};
+
+export type stateInterface = queryInterface & filterKeyInterface;
+
+export type QueryParamsDataType = { queryString: string; queryObject: stateInterface };
+
+export type QueryParamsFunctionsType = {
+  search: (query: string) => void;
+  applyOneFilter: (filterKey: string, status: string | boolean) => void;
+  applySomeFilter: (filterKey: string, status: string) => void;
+  clearFilter: (filterKey: string) => void;
+};
+
+type returnedFromHook = [QueryParamsDataType, QueryParamsFunctionsType];
+
+export type queryParamsHook = (init: { [key: string]: string }) => returnedFromHook;
