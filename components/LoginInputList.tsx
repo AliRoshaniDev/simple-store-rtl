@@ -29,7 +29,7 @@ export default function LoginInputList() {
         <MenuInput name="userPassword" labelBody="رمز عبور:" type="password" />
 
         <div className="pt-2 border-t-2 border-gray-100 flex justify-between">
-          <Btn text="ورود" type="primary" size="w-full" />
+          <Btn text="ورود" type="primary" width="w-full" />
         </div>
       </Form>
     </Formik>

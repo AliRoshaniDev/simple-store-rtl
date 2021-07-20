@@ -14,7 +14,7 @@ export default function MenuAuth() {
         <div className="flex flex-col py-2 pb-0 h-full">
           <div className="flex flex-col items-center">
             {userStatus === null && <EmojiAndText text="لطفا وارد شوید یا ثبت نام کنید" emoji="/images/icons/smile.svg" />}
-            {userStatus !== null && <Btn onClick={() => setUserStatus(null)} icon="/images/icons/close.svg" type="secondary" size="w-10" optionalStyle="mr-auto" noBorder={true} />}
+            {userStatus !== null && <Btn onClick={() => setUserStatus(null)} icon="/images/icons/close.svg" type="secondary" width="w-10" optionalStyle="mr-auto" noBorder={true} />}
             {userStatus === "login" && <LoginInputList />}
             {userStatus === "signup" && <SignupInputList />}
           </div>
@@ -22,8 +22,8 @@ export default function MenuAuth() {
       </div>
       {userStatus === null && (
         <div className="pt-2 border-t-2 border-gray-100 flex justify-between">
-          <Btn onClick={() => setUserStatus("login")} text="ورود" type="primary" size="w-1/2-less" />
-          <Btn onClick={() => setUserStatus("signup")} text="ثبت نام" type="secondary" size="w-1/2-less" />
+          <Btn onClick={() => setUserStatus("login")} text="ورود" type="primary" width="w-1/2-less" />
+          <Btn onClick={() => setUserStatus("signup")} text="ثبت نام" type="secondary" width="w-1/2-less" />
         </div>
       )}
     </div>

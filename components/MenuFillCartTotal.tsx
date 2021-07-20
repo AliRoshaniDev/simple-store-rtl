@@ -25,7 +25,7 @@ function MenuFillCartTotal() {
         </div>
       </div>
       <div className="pt-2">
-        <Btn onClick={(e: React.MouseEvent<HTMLElement>) => handleAddCart(e)} text="نهایی کردن خرید" type="secondary" size="w-full" />
+        <Btn onClick={(e: React.MouseEvent<HTMLElement>) => handleAddCart(e)} text="نهایی کردن خرید" type="secondary" width="w-full" />
       </div>
     </div>
   );

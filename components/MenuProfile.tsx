@@ -26,7 +26,7 @@ export default function MenuProfile() {
         </div>
       </div>
       <div className="pt-2 border-t-2 border-gray-100">
-        <Btn onClick={() => handleLogout()} text="خروج از حساب" type="secondary" size="w-full" />
+        <Btn onClick={() => handleLogout()} text="خروج از حساب" type="secondary" width="w-full" />
       </div>
     </div>
   );
