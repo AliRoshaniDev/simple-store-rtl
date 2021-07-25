@@ -1,7 +1,7 @@
 import ProductsItems from "./ProductsItems";
 import QueryParamsProvider from "../providers/QueryParamsProvider";
-
 import ProductsHeader from "./ProductsHeader";
+import ProductsPageBtns from "./ProductsPageBtns";
 
 export default function Products() {
   return (
@@ -10,6 +10,7 @@ export default function Products() {
         <QueryParamsProvider>
           <ProductsHeader />
           <ProductsItems />
+          <ProductsPageBtns />
         </QueryParamsProvider>
       </div>
     </main>
