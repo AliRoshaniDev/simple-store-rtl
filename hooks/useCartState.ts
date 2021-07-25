@@ -1,19 +1,48 @@
-import { useState, useEffect, useMemo, SetStateAction, Dispatch } from "react";
-import { CartDataType } from "../types/index";
+import { useReducer, useEffect, useMemo, Dispatch } from "react";
+import { CartItemType, ActionCartType } from "../types/index";
 
-export default function useCartState(): [CartDataType, Dispatch<SetStateAction<CartDataType>>] {
+export default function useCartState(): [CartItemType[] | null, Dispatch<ActionCartType>] {
   function initialize() {
-    return JSON.parse(localStorage.getItem("cart")!) || [];
+    return JSON.parse(localStorage.getItem("cart")!) || null;
   }
 
-  const [cartState, setCartState] = useState<CartDataType>(initialize());
+  function reducer(state: CartItemType[] | null, action: ActionCartType): CartItemType[] | null {
+    const { payload } = action;
+
+    switch (action.type) {
+      case "DELETE_ALL":
+        return null;
+
+      case "DELETE_ONE":
+        const filteredCart = [...state!].filter((cartItem) => cartItem.id !== payload!.id);
+
+        return !filteredCart.length ? null : filteredCart;
+
+      case "ADD_ONE":
+        if (!state) {
+          return [action.payload as CartItemType];
+        } else if (state.find((cartItem) => cartItem.id === payload!.id)) {
+          return [...state].map((cartItem) => (cartItem.id === payload!.id ? { ...cartItem, addedNumber: cartItem.addedNumber + 1 } : cartItem));
+        } else {
+          return [...state, payload as CartItemType];
+        }
+
+      default:
+        return state;
+    }
+  }
+
+  const [cartState, dispatch] = useReducer(reducer, initialize());
 
   const channel = useMemo(() => new BroadcastChannel("cart_data"), []);
 
   useEffect(() => {
-    channel.onmessage = (message) => setCartState(message.data);
-    localStorage.setItem("cart", JSON.stringify(cartState));
-  }, [cartState, channel]);
+    channel.onmessage = (message) => dispatch(message.data);
+  });
 
-  return [cartState, setCartState];
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartState));
+  }, [cartState]);
+
+  return [cartState, dispatch];
 }
