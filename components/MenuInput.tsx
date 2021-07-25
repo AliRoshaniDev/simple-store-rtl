@@ -8,7 +8,6 @@ type MenuInputProps = {
 
 export default function MenuInput(props: MenuInputProps) {
   const [field, meta] = useField(props);
-  console.log(meta);
 
   const { name, type, labelBody } = props;
 

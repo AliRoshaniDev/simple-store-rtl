@@ -7,10 +7,10 @@ function MenuFillCartTotal() {
   const { deleteAll } = useSetCartData();
   const { totalNumber, totalPrice } = useCartTotal();
 
-  const handleAddCart = (event: React.MouseEvent<HTMLElement>) => {
-    event.stopPropagation();
-    deleteAll();
-  };
+  // const handleAddCart = (event: React.MouseEvent<HTMLElement>) => {
+  //   event.stopPropagation();
+  //   deleteAll();
+  // };
 
   return (
     <div className="h-auto text-right w-full whitespace-no-wrap rounded-lg text-sm md:text-base text-gray-600 hover:text-gray-800">
@@ -25,7 +25,7 @@ function MenuFillCartTotal() {
         </div>
       </div>
       <div className="pt-2">
-        <Btn onClick={(e: React.MouseEvent<HTMLElement>) => handleAddCart(e)} text="نهایی کردن خرید" type="secondary" width="w-full" />
+        <Btn onClick={() => deleteAll()} text="نهایی کردن خرید" type="secondary" width="w-full" />
       </div>
     </div>
   );

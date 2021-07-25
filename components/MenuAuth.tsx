@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Btn from "./Btn";
-import useAuth from "../hooks/useAuth";
 import EmojiAndText from "./EmojiAndText";
 import LoginInputList from "./LoginInputList";
 import SignupInputList from "./SignupInputList";
@@ -14,7 +13,7 @@ export default function MenuAuth() {
         <div className="flex flex-col py-2 pb-0 h-full">
           <div className="flex flex-col items-center">
             {userStatus === null && <EmojiAndText text="لطفا وارد شوید یا ثبت نام کنید" emoji="/images/icons/smile.svg" />}
-            {userStatus !== null && <Btn onClick={() => setUserStatus(null)} icon="/images/icons/close.svg" type="secondary" width="w-10" optionalStyle="mr-auto" noBorder={true} />}
+            {userStatus !== null && <Btn onClick={() => setUserStatus(null)} icon="/images/icons/close.svg" type="secondary" width="w-10" buttonStyle="mr-auto" />}
             {userStatus === "login" && <LoginInputList />}
             {userStatus === "signup" && <SignupInputList />}
           </div>

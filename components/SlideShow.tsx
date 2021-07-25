@@ -4,7 +4,7 @@ import SwiperCore, { Navigation, Autoplay } from "swiper";
 import useExternalData from "../hooks/useExternalData";
 
 SwiperCore.use([Navigation, Autoplay]);
-// Autoplay.params.autoplay.delay = 100
+(Autoplay as any).params.autoplay.delay = 5000;
 
 function SlideShow() {
   const sliderData = useExternalData("/.netlify/functions/slides") || [];
@@ -12,7 +12,7 @@ function SlideShow() {
   return (
     <section className="w-full mb-10">
       <div className="container mx-auto">
-        <Swiper navigation pagination loop={true} slidesPerView={1} className="shadow-lg rounded-xl">
+        <Swiper navigation pagination autoplay loop={true} slidesPerView={1} className="shadow-lg rounded-xl">
           {sliderData.length === 0 && (
             <SwiperSlide className=" h-56 sm:h-64 md:h-92 w-full">
               <div className="animate-pulse">

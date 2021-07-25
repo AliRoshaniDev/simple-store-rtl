@@ -7,7 +7,8 @@ export default function useExternalData(url: string) {
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
-      .then((reponseData) => setData(reponseData));
+      .then((reponseData) => setData(reponseData))
+      .catch((err) => setData(undefined));
   }, [url]);
   return data;
 }
