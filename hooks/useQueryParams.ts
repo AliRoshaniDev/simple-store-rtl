@@ -1,27 +1,34 @@
 import { useReducer, useState, useEffect } from "react";
-import { makeParamsString, compose } from "../tools/index";
+import { compose, stringValuesToNumber, stringValuesToBoolean, initConverter, useIsFirstMount } from "../tools/index";
 import { actionInterface, stateInterface, queryParamsHook } from "../types/index";
-import { stringToBoolean, convertValuesToArray } from "../tools/index";
+import useNextQueryParams from "../hooks/useNextQueryParams";
 import { dissoc, assoc, filter, append } from "ramda";
 import { useRouter } from "next/router";
+import qs from "qs";
 
 // function isStringArray(input: boolean | string[]): input is string[] {
 //   return (input as string[]).includes !== undefined;
 // }
 
-const useQueryParams: queryParamsHook = (init: { [key: string]: string }) => {
+const useQueryParams: queryParamsHook = () => {
   //stringToBoolean converts values like these: "true", "false" to true, false on each property
-  const initObject = convertValuesToArray(stringToBoolean(init));
+  const init = useNextQueryParams(); // { [key: string]: string }
+  if (!init["page"]) init["page"] = "1"; // this mutate maybe isn't good ///////////
 
-  const initString = makeParamsString(initObject);
+  const initQueryObject = initConverter(init);
 
-  const [queryString, setQuery] = useState(initString);
-  const updateQuery = compose(setQuery, makeParamsString);
+  const initString = qs.stringify(initQueryObject);
+
+  const [queryString, setQueryString] = useState(initString);
+  const updateQueryString = compose(setQueryString, qs.stringify);
 
   const router = useRouter();
 
+  const isFirstMount = useIsFirstMount();
   useEffect(() => {
-    router.push(queryString);
+    if (!isFirstMount) {
+      router.push("?" + queryString);
+    }
   }, [queryString]);
 
   const reducer = (state: stateInterface, action: actionInterface) => {
@@ -68,12 +75,12 @@ const useQueryParams: queryParamsHook = (init: { [key: string]: string }) => {
         return state;
     }
 
-    updateQuery(response);
+    updateQueryString(response);
 
     return response;
   };
 
-  const [queryObject, dispatch] = useReducer(reducer, initObject);
+  const [queryObject, dispatch] = useReducer(reducer, initQueryObject as stateInterface);
 
   const search = (query: string) => {
     dispatch({
@@ -84,7 +91,7 @@ const useQueryParams: queryParamsHook = (init: { [key: string]: string }) => {
     });
   };
 
-  const applyOneFilter = (filterKey: string, status: string | boolean) => {
+  const applyOneFilter = (filterKey: string, status: string | boolean | number) => {
     dispatch({
       type: "ONE_FILTER",
       payload: {

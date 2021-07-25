@@ -1,45 +1,44 @@
 import { useContext, useMemo } from "react";
 import { SetCartContext } from "../providers/CartProvider";
-import { CartDataType, ProductType } from "../types/index";
+import { ProductItemType } from "../types/index";
 
 function useSetCartData() {
-  const setCartData = useContext(SetCartContext);
+  const dispatch = useContext(SetCartContext);
   const channel = useMemo(() => new BroadcastChannel("cart_data"), []);
 
-  let cartData: CartDataType | [];
-
   function deleteAll() {
-    setCartData!(() => {
-      cartData = [];
-      channel.postMessage(cartData);
-      return cartData;
-    });
+    const actionCart = {
+      type: "DELETE_ALL" as const,
+    };
+    channel.postMessage(actionCart);
+
+    // dispatch!(actionCart);
   }
 
-  function deleteOne(inputValue: number) {
-    // this inputValue is "id" of item(product) Which we want to delete
-    setCartData!((preCart) => {
-      cartData = preCart.filter((item) => item.id !== inputValue);
-      channel.postMessage(cartData);
-      return cartData;
-    });
+  function deleteOne(id: number) {
+    const actionCart = {
+      type: "DELETE_ONE" as const,
+      payload: {
+        id,
+      },
+    };
+    channel.postMessage(actionCart);
+
+    // dispatch!(actionCart);
   }
 
-  function addOne(inputValue: ProductType) {
-    // this inputValue is a objcet of item(product) Which we want to add
-    setCartData!((preCart) => {
-      let itemWasBefore = false;
-      for (const addedProduct of preCart) {
-        if (addedProduct.id === inputValue.id) {
-          addedProduct.numberAdded += 1;
-          addedProduct.price += inputValue.price;
-          itemWasBefore = true;
-        }
-      }
-      cartData = itemWasBefore ? [...preCart] : [...preCart, inputValue];
-      channel.postMessage(cartData);
-      return cartData;
-    });
+  function addOne(cartItem: ProductItemType) {
+    // cartItem is a objcet of item(product) Which we want to add
+    const actionCart = {
+      type: "ADD_ONE" as const,
+      payload: {
+        ...cartItem,
+        addedNumber: 1,
+      },
+    };
+    channel.postMessage(actionCart);
+
+    // dispatch!(actionCart);
   }
 
   return { deleteAll, deleteOne, addOne };
