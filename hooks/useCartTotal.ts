@@ -5,7 +5,9 @@ export default function useCartTotal() {
 
   return cartData!.reduce(
     (total, item) => {
-      return { totalNumber: total.totalNumber + item.numberAdded, totalPrice: total.totalPrice + item.price };
+      const { totalNumber, totalPrice } = total;
+      const { addedNumber, price } = item;
+      return { totalNumber: totalNumber + addedNumber, totalPrice: totalPrice + addedNumber * price };
     },
     { totalNumber: 0, totalPrice: 0 }
   );
