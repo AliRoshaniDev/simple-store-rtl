@@ -22,12 +22,12 @@ export default function FillProductCard(props: ProductItemType) {
 
   return (
     <article className="rounded-xl shadow-lg w-10/12 md:w-full h-72 select-none">
-      <header className="w-full h-3/4">
+      <header className="w-full h-3/4 bg-mycolor-light">
         <figure className="h-full relative">
           <Image layout="fill" objectFit="cover" className="h-full w-full rounded-t-xl" src={picture} alt={name} />
         </figure>
       </header>
-      <footer className="w-full px-3 pt-2 flex flex-col relative h-1/4">
+      <footer className="w-full px-3 pt-2 flex flex-col relative h-1/4 bg-white rounded-b-xl">
         {/* <div onClick={handleAddCart} className="absolute -top-5 left-5 w-15 h-15 rounded-full flex items-center justify-center cursor-pointer">
           <span className="flex h-9 w-9">
             <span className={`${playAnimation ? "animate-ping" : "animate-none"} absolute inline-flex h-full w-full rounded-full bg-mycolor-dark opacity-75`}></span>

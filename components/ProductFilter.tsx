@@ -27,7 +27,7 @@ export default function ProductFilter() {
 
   return (
     <div className="relative h-10 mr-2">
-      <div ref={parentElement as LegacyRef<HTMLDivElement>} className={`flex flex-row-reverse items-center p-2 h-10 rounded-lg bg-transparent border-2 border-gray-300 ${itemIsFocus ? "border-mycolor-dark" : ""} hover:border-mycolor-dark hover:bg-mycolor-light ${itemIsFocus && "bg-mycolor-light"} cursor-pointer transition duration-300 ease-in-out`}>
+      <div ref={parentElement as LegacyRef<HTMLDivElement>} className={`flex flex-row-reverse items-center p-2 h-10 rounded-lg bg-white bg-transparent border-2 border-gray-300 ${itemIsFocus ? "border-mycolor-dark" : ""} hover:border-mycolor-dark hover:bg-mycolor-light ${itemIsFocus && "bg-mycolor-light"} cursor-pointer transition duration-300 ease-in-out`}>
         {getCheckedValue() && <Badge size="small" />}
         <ReactSVG src="/images/icons/filter.svg" />
         <span className="mr-2 ml-1">فیلتر</span>

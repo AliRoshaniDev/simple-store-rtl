@@ -16,6 +16,8 @@
 /* Default font is vazir farsi digit */
 body {
   font-family: "Vazir-FarsiDigit";
+  background-image: url("../public/images/others/dot-grid.png");
+  background-repeat: repeat;
 }
 
 /* Font Vazir farsi digit */
