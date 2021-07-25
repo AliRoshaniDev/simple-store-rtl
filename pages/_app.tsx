@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="description" content="Simple RTL Store with React.js and tailwindcss." />
         <link rel="apple-touch-icon" href="/images/favicons/logo192.png" />
 
-        <meta property="og:image" content="/images/favicons/logo512.png" />
+        <meta property="og:image" content="/images/others/demo.jpg" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="512" />
         <meta property="og:image:height" content="512" />
@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         <meta name="twitter:title" content="Simple Store" />
         <meta name="twitter:description" content="Simple RTL Store with NEXT and TS" />
-        <meta name="twitter:image" content="/images/favicons/logo512.png" />
+        <meta name="twitter:image" content="/images/others/demo.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
