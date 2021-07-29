@@ -1,18 +1,10 @@
 import useQueryContext from "../hooks/useQueryContext";
 import Btn from "./Btn";
-import useExternalData from "../hooks/useExternalData";
-import qs from "qs";
 
 export default function ProductsPageBtns() {
-  const { queryObject, applyOneFilter } = useQueryContext();
+  const { queryObject, applyOneFilter, allNumber } = useQueryContext();
 
-  let queryObjectWithoutPage = { ...queryObject }; ////////
-  if (queryObjectWithoutPage["page"]) {
-    delete queryObjectWithoutPage["page"];
-  }
-  const productsData = useExternalData(`/.netlify/functions/products?${qs.stringify(queryObjectWithoutPage)}`); ////////
-
-  const postsPerPage = productsData && Math.ceil(productsData.length / 8);
+  const postsPerPage = allNumber && Math.ceil(allNumber / 8);
   const Btns = new Array(postsPerPage).fill(0).map((_, index) => index + 1);
 
   function handleBtnClick(pageNumber: number) {

@@ -173,20 +173,22 @@ exports.handler = async (event) => {
   const { query, sort, filter, page } = event.queryStringParameters;
 
   function calculateData() {
-    let finalData = [...products];
+    let finalData = { products: [...products], allNumber: null };
     if (query) {
-      finalData = finalData.filter((product) => product.name.includes(query));
+      finalData.products = finalData.products.filter((product) => product.name.includes(query));
     }
     if (filter) {
-      finalData = finalData.filter((product) => product.instock);
+      finalData.products = finalData.products.filter((product) => product.instock);
     }
     if (sort) {
-      finalData = finalData.sort((priorProduct, latterProduct) => priorProduct[sort] - latterProduct[sort]);
+      finalData.products = finalData.products.sort((priorProduct, latterProduct) => priorProduct[sort] - latterProduct[sort]);
     }
     if (page) {
+      finalData.allNumber = finalData.products.length;
+
       const start = Number(page) * 8 - 8;
       const end = Number(page) * 8;
-      finalData = finalData.slice(start, end);
+      finalData.products = finalData.products.slice(start, end);
     }
     return finalData;
   }

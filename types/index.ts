@@ -21,6 +21,8 @@ export type ProductItemType = {
   instock: boolean;
 };
 
+export type ProductsDataType = { products: ProductItemType[]; allNumber: number | null };
+
 export type CartItemType = {
   name: string;
   price: number;
@@ -102,6 +104,6 @@ export type QueryParamsFunctionsType = {
   clearFilter: (filterKey: string) => void;
 };
 
-type returnedFromHook = [QueryParamsDataType, QueryParamsFunctionsType];
+export type returnedFromHook = [QueryParamsDataType, QueryParamsFunctionsType];
 
 export type queryParamsHook = () => returnedFromHook;

@@ -1,6 +1,6 @@
 import { useReducer, useState, useEffect } from "react";
-import { compose, stringValuesToNumber, stringValuesToBoolean, initConverter, useIsFirstMount } from "../tools/index";
-import { actionInterface, stateInterface, queryParamsHook } from "../types/index";
+import { compose, initConverter, useIsFirstMount } from "../tools/index";
+import { actionInterface, stateInterface, returnedFromHook } from "../types/index";
 import useNextQueryParams from "../hooks/useNextQueryParams";
 import { dissoc, assoc, filter, append } from "ramda";
 import { useRouter } from "next/router";
@@ -10,7 +10,7 @@ import qs from "qs";
 //   return (input as string[]).includes !== undefined;
 // }
 
-const useQueryParams: queryParamsHook = () => {
+export default function useQueryParams(): returnedFromHook {
   //stringToBoolean converts values like these: "true", "false" to true, false on each property
   const init = useNextQueryParams(); // { [key: string]: string }
   if (!init["page"]) init["page"] = "1"; // this mutate maybe isn't good ///////////
@@ -21,15 +21,6 @@ const useQueryParams: queryParamsHook = () => {
 
   const [queryString, setQueryString] = useState(initString);
   const updateQueryString = compose(setQueryString, qs.stringify);
-
-  const router = useRouter();
-
-  const isFirstMount = useIsFirstMount();
-  useEffect(() => {
-    if (!isFirstMount) {
-      router.push("?" + queryString);
-    }
-  }, [queryString]);
 
   const reducer = (state: stateInterface, action: actionInterface) => {
     let response: stateInterface = {};
@@ -82,6 +73,20 @@ const useQueryParams: queryParamsHook = () => {
 
   const [queryObject, dispatch] = useReducer(reducer, initQueryObject as stateInterface);
 
+  const router = useRouter();
+  const isFirstMount = useIsFirstMount();
+  useEffect(() => {
+    if (!isFirstMount) {
+      router.push(
+        {
+          query: { ...queryObject },
+        },
+        undefined,
+        { scroll: false }
+      );
+    }
+  }, [queryString]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const search = (query: string) => {
     dispatch({
       type: "SEARCH",
@@ -124,6 +129,4 @@ const useQueryParams: queryParamsHook = () => {
     { queryString, queryObject },
     { search, applyOneFilter, applySomeFilter, clearFilter },
   ];
-};
-
-export default useQueryParams;
+}

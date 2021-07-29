@@ -30,8 +30,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         <meta property="og:image" content="/images/others/demo.jpg" />
         <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="512" />
-        <meta property="og:image:height" content="512" />
+        <meta property="og:image:width" content="1899" />
+        <meta property="og:image:height" content="971" />
         <meta property="og:title" content="Simple Store" />
         <meta property="og:site_name" content="Simple Store RTL" />
         <meta property="og:url" content="https://simple-store-rtl.netlify.app/" />
