@@ -14,9 +14,9 @@ function SlideShow() {
       <div className="container mx-auto">
         <Swiper navigation pagination autoplay loop={true} slidesPerView={1} className="shadow-lg rounded-xl">
           {sliderData.length === 0 && (
-            <SwiperSlide className=" h-56 sm:h-64 md:h-92 w-full">
+            <SwiperSlide className="h-56 sm:h-64 md:h-92 w-full">
               <div className="animate-pulse">
-                <Image layout="fill" objectFit="cover" src="/images/others/slider-loading.png" alt="Loading" />
+                <div className="h-56 sm:h-64 md:h-92 w-full object-fill bg-mycolor-dark bg-opacity-30"></div>
               </div>
             </SwiperSlide>
           )}
