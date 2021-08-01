@@ -4,7 +4,7 @@ import useQueryContext from "../hooks/useQueryContext";
 import Btn from "./Btn";
 
 export default function ProductSearch() {
-  const { search, queryObject } = useQueryContext();
+  const { search, queryObject, applyOneFilter } = useQueryContext();
 
   function getQueryValue(): string {
     if (queryObject && queryObject.query) {
@@ -25,7 +25,8 @@ export default function ProductSearch() {
         })}
         onSubmit={(values, actions) => {
           const { searchProducts } = values;
-          if (!search) return;
+          if (!search || !queryObject || !applyOneFilter) return;
+          if (queryObject["page"] !== 1) applyOneFilter("page", 1); ////////////////
           search(searchProducts);
         }}
       >
