@@ -1,77 +1,75 @@
-import { useReducer, useState, useEffect } from "react";
-import { compose, initConverter, useIsFirstMount } from "../tools/index";
-import { actionInterface, stateInterface, returnedFromHook } from "../types/index";
+import { useReducer, useEffect, useMemo } from "react";
+import { initConverter, useIsFirstMount } from "../tools/index";
+import { actionInterface, returnedFromHook, QueryParamsDataType } from "../types/index";
 import useNextQueryParams from "../hooks/useNextQueryParams";
 import { dissoc, assoc, filter, append } from "ramda";
 import { useRouter } from "next/router";
 import qs from "qs";
 
-// function isStringArray(input: boolean | string[]): input is string[] {
-//   return (input as string[]).includes !== undefined;
-// }
-
 export default function useQueryParams(): returnedFromHook {
-  //stringToBoolean converts values like these: "true", "false" to true, false on each property
   const init = useNextQueryParams(); // { [key: string]: string }
-  if (!init["page"]) init["page"] = "1"; // this mutate maybe isn't good ///////////
 
-  const initQueryObject = initConverter(init);
+  function getInit() {
+    if (!init["page"]) init["page"] = "1"; // this mutate maybe isn't good ///////////
 
-  const initString = qs.stringify(initQueryObject);
+    const initQueryObject = initConverter(init);
 
-  const [queryString, setQueryString] = useState(initString);
-  const updateQueryString = compose(setQueryString, qs.stringify);
+    const initQueryString = qs.stringify(initQueryObject);
 
-  const reducer = (state: stateInterface, action: actionInterface) => {
-    let response: stateInterface = {};
-    response = { ...state };
+    return { initQueryObject, initQueryString };
+  }
+
+  const { initQueryObject, initQueryString } = useMemo(() => getInit(), []);
+
+  const reducer = (state: QueryParamsDataType, action: actionInterface) => {
+    let response = { ...state };
 
     const { filterKey, status, query } = action.payload;
 
     switch (action.type) {
       case "SEARCH":
         if (query === "") {
-          response = dissoc("query", response);
+          response.queryObject = dissoc("query", response.queryObject);
         } else {
-          response = assoc("query", query, response);
+          response.queryObject = assoc("query", query, response.queryObject);
         }
         break;
 
       case "ONE_FILTER":
         if (!filterKey || typeof status === "undefined") return response;
-        if (status === false || state[filterKey] === status) {
-          response = dissoc(filterKey, response);
+        if (status === false || state.queryObject[filterKey] === status) {
+          response.queryObject = dissoc(filterKey, response.queryObject);
         } else {
-          response = assoc(filterKey, status, response);
+          response.queryObject = assoc(filterKey, status, response.queryObject);
         }
         break;
 
       case "SOME_FILTER":
         if (!filterKey || typeof status !== "string") return response;
-        if (state[filterKey] && (state[filterKey] as string[]).includes(status) && !(response[filterKey] as string[]).length) {
-          response = dissoc(filterKey, response);
-        } else if (state[filterKey] && (state[filterKey] as string[]).includes(status)) {
-          response[filterKey] = filter((item) => item !== status, response[filterKey] as string[]);
+        if (state.queryObject[filterKey] && (state.queryObject[filterKey] as string[]).includes(status) && !(response.queryObject[filterKey] as string[]).length) {
+          response.queryObject = dissoc(filterKey, response);
+        } else if (state.queryObject[filterKey] && (state.queryObject[filterKey] as string[]).includes(status)) {
+          response.queryObject[filterKey] = filter((item) => item !== status, response.queryObject[filterKey] as string[]);
         } else {
-          response[filterKey] = append(status, (response[filterKey] as string[]) || []);
+          response.queryObject[filterKey] = append(status, (response.queryObject[filterKey] as string[]) || []);
         }
         break;
 
       case "CLEAR":
         if (!filterKey) return response;
-        response = dissoc(filterKey, response);
+        response.queryObject = dissoc(filterKey, response);
         break;
 
       default:
         return state;
     }
 
-    updateQueryString(response);
+    response.queryString = qs.stringify(response.queryObject);
 
     return response;
   };
 
-  const [queryObject, dispatch] = useReducer(reducer, initQueryObject as stateInterface);
+  const [queryParams, dispatch] = useReducer(reducer, { queryObject: initQueryObject, queryString: initQueryString } as QueryParamsDataType);
 
   const router = useRouter();
   const isFirstMount = useIsFirstMount();
@@ -79,13 +77,13 @@ export default function useQueryParams(): returnedFromHook {
     if (!isFirstMount) {
       router.push(
         {
-          query: { ...queryObject },
+          query: { ...queryParams.queryObject },
         },
         undefined,
         { scroll: false }
       );
     }
-  }, [queryString]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [queryParams.queryString]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const search = (query: string) => {
     dispatch({
@@ -125,8 +123,5 @@ export default function useQueryParams(): returnedFromHook {
     });
   };
 
-  return [
-    { queryString, queryObject },
-    { search, applyOneFilter, applySomeFilter, clearFilter },
-  ];
+  return [{ ...queryParams }, { search, applyOneFilter, applySomeFilter, clearFilter }];
 }
