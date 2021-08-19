@@ -13,7 +13,7 @@ export default function NavBarUser() {
 
   return (
     <div ref={parentElement as LegacyRef<HTMLDivElement>} className="justify-self-end h-full cursor-pointer py-2 xl:py-3 relative">
-      <div className={`flex items-center h-full bg-transparent hover:bg-mycolor-light border-2 border-gray-300 hover:border-mycolor-dark ${userIsHover && "bg-mycolor-light  border-2 border-mycolor-dark"} rounded-lg transition duration-100 ease-in-out px-3`}>
+      <div className={`flex items-center h-full bg-transparent hover:bg-mycolor-light border-2 border-gray-300 hover:border-mycolor-dark ${userIsHover && "bg-mycolor-light  border-2 border-mycolor-dark"} rounded-lg transition duration-200 ease-in-out px-3`}>
         <span className="mr-2 hidden lg:inline font-vazir-latin">{user ? user!.user_metadata.full_name : "حساب کاربری"}</span>
         <ReactSVG src="/images/icons/person.svg" />
       </div>

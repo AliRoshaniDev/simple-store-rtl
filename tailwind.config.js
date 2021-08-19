@@ -12,12 +12,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        "cupcake-light": "#FFF5C1",
-        "cupcake-brown": "#C27628",
-        "cupcake-pink": "#FCB6D8",
-
         "mycolor-light": "#edffea",
-        "mycolor-lesslight": "#ece242",
         "mycolor-dark": "#216353",
       },
       height: {
