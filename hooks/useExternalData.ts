@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 //This hook is used to receive data by url
-export default function useExternalData(url: string) {
-  const [data, setData] = useState<any[] | undefined>(undefined);
+export default function useExternalData<T>(url: string): T | undefined {
+  const [data, setData] = useState<T | undefined>(undefined);
 
   useEffect(() => {
     fetch(url)

@@ -7,7 +7,7 @@ SwiperCore.use([Navigation, Autoplay]);
 (Autoplay as any).params.autoplay.delay = 5000;
 
 function SlideShow() {
-  const sliderData = useExternalData("/.netlify/functions/slides") || [];
+  const sliderData = useExternalData<{ id: number; picture: string; pictureAlt: string }[]>("/.netlify/functions/slides") || [];
 
   return (
     <section className="w-full mb-10">
