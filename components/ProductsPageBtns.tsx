@@ -1,10 +1,11 @@
 import useQueryContext from "../hooks/useQueryContext";
 import Btn from "./Btn";
+import { NUMBER_POST_IN_PAGE } from "../constants/index";
 
 export default function ProductsPageBtns() {
   const { queryObject, applyOneFilter, allNumber } = useQueryContext();
 
-  const postsPerPage = allNumber && Math.ceil(allNumber / 8);
+  const postsPerPage = allNumber && Math.ceil(allNumber / NUMBER_POST_IN_PAGE);
   const Btns = new Array(postsPerPage).fill(0).map((_, index) => index + 1);
 
   function handleBtnClick(pageNumber: number) {
