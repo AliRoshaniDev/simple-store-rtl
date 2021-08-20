@@ -29,18 +29,18 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="apple-touch-icon" href="/images/favicons/logo192.png" />
 
         <meta property="og:image" content="/images/others/demo.jpg" />
-        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:type" content="image/jpg" />
         <meta property="og:image:width" content="1899" />
         <meta property="og:image:height" content="971" />
         <meta property="og:title" content="Simple Store" />
         <meta property="og:site_name" content="Simple Store RTL" />
         <meta property="og:url" content="https://simple-store-rtl.netlify.app/" />
-        <meta property="og:description" content="Simple RTL Store with NEXT and TS" />
+        <meta property="og:description" content="Simple RTL Store built with NEXT and TS" />
 
-        <meta name="twitter:title" content="Simple Store" />
-        <meta name="twitter:description" content="Simple RTL Store with NEXT and TS" />
-        <meta name="twitter:image" content="/images/others/demo.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Simple Store | فروشگاه ساده" />
+        <meta name="twitter:description" content="Simple RTL Store built with NEXT and TS" />
+        <meta name="twitter:image" content="/images/others/demo-2.jpg" />
       </Head>
 
       <IdentityContextProvider url={url}>
