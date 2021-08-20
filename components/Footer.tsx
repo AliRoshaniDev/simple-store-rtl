@@ -1,27 +1,24 @@
 import { ReactSVG } from "react-svg";
+import Image from "next/image";
 
 export default function Footer() {
   return (
     <footer className="w-full">
-      <section className="flex justify-center items-center relative top-20 bg-white z-10 w-max text-xl rounded-lg border-2 border-gray-300 hover:border-mycolor-dark hover:bg-mycolor-light font-bold py-1 px-3 mx-auto transition duration-200">
-        <div className="w-10">
-          <ReactSVG src="/images/icons/code.svg" className="w-8" />
+      <div className="container mx-auto shadow-lg bg-white flex justify-center items-center rounded-xl h-16 px-2 xl:px-3">
+        <div className="justify-self-end h-full cursor-pointer py-2 xl:py-3 relative">
+          <div className={`flex items-center h-full bg-transparent hover:bg-mycolor-light border-2 border-gray-300 hover:border-mycolor-dark bg-white rounded-lg transition duration-200 ease-in-out px-3`}>
+            <Image width={25} height={25} src="/images/icons/code.png" alt="code" />
+            <span className="mx-2 font-bold text-xl">
+              {" by"}
+              <a href="https://github.com/alimoallem27" className="px-2 text-mycolor-dark underline">
+                Ali Moallem
+              </a>
+              {"at "}
+            </span>
+            <Image width={22} height={22} src="/images/icons/moon.png" alt="code" />
+          </div>
         </div>
-        <div>
-          <span>by</span>
-          <a href="https://github.com/alimoallem27" className="px-2 text-mycolor-dark">
-            Ali Moallem
-          </a>
-          <span>at</span>
-        </div>
-
-        <div className="h-8 ml-2">
-          <ReactSVG src="/images/icons/night.svg" className="w-7" />
-        </div>
-      </section>
-      <section className="w-full">
-        <div className="w-full h-28 bg-gradient-to-t from-black opacity-25"></div>
-      </section>
+      </div>
     </footer>
   );
 }
