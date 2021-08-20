@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Simple Store | فروشگاه ساده" />
         <meta name="twitter:description" content="Simple RTL Store built with NEXT and TS" />
-        <meta name="twitter:image" content="/images/others/demo-2.jpg" />
+        <meta name="twitter:image" content="https://raw.githubusercontent.com/AliMoallem27/simple-store-rtl/dev-ts-next/public/images/others/demo.jpg" />
       </Head>
 
       <IdentityContextProvider url={url}>
