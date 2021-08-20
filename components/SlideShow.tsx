@@ -10,7 +10,7 @@ function SlideShow() {
   const sliderData = useExternalData<{ id: number; picture: string; pictureAlt: string }[]>("/.netlify/functions/slides") || [];
 
   return (
-    <section className="w-full mb-10">
+    <section className="w-full mb-10 2xl:px-12">
       <div className="container mx-auto">
         <Swiper navigation pagination autoplay loop={true} slidesPerView={1} className="shadow-lg rounded-xl">
           {sliderData.length === 0 && (

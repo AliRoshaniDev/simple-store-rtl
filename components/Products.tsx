@@ -5,7 +5,7 @@ import ProductsPageBtns from "./ProductsPageBtns";
 
 export default function Products() {
   return (
-    <main className="w-full mb-10">
+    <main className="w-full mb-10 2xl:px-12">
       <div className="container mx-auto">
         <QueryParamsProvider>
           <ProductsHeader />
