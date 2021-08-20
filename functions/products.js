@@ -149,14 +149,14 @@ exports.handler = async (event) => {
     },
     {
       id: 22,
-      name: "ساعت مشتی",
+      name: "ساعت اورجینال",
       price: 110,
       picture: "/images/products/product22.jpg",
       instock: true,
     },
     {
       id: 23,
-      name: "عینک پر رو",
+      name: "عینک لوکس",
       price: 200,
       picture: "/images/products/product23.jpg",
       instock: false,
