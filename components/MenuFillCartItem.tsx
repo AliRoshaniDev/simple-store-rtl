@@ -10,8 +10,8 @@ export default function MenuFillCartItem(props: CartItemType) {
   return (
     <div className="h-24 mb-1 text-right w-full whitespace-no-wrap rounded-lg text-base text-gray-600 hover:text-gray-800 hover:bg-mycolor-light transition duration-200 ease-in-out">
       <div className="flex items-center px-2 h-full">
-        <figure className="h-20 w-20">
-          <Image className="object-cover h-20 w-full rounded-lg" src={picture} width={80} height={80} alt={name} />
+        <figure className="h-20 w-20 relative">
+          <Image className="rounded-lg" layout="fill" objectFit="cover" src={picture} alt={name} />
         </figure>
         <div className="w-cartItemText flex flex-col pr-2">
           <span className="whitespace-nowrap text-gray-700 overflow-hidden font-vazir-latin">{name}</span>
