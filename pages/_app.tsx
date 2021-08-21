@@ -12,7 +12,7 @@ import AuthProvider from "../providers/AuthProvider";
 const DynamicCartProviderWithNoSSR = dynamic(() => import("../providers/CartProvider"), { ssr: false });
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const url = "https://fervent-hypatia-b5801d.netlify.app/";
+  const url = "https://simple-store-rtl.netlify.app/";
 
   return (
     <>
