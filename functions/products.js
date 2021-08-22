@@ -181,7 +181,13 @@ exports.handler = async (event) => {
       finalData.products = finalData.products.filter((product) => product.instock);
     }
     if (sort) {
-      finalData.products = finalData.products.sort((priorProduct, latterProduct) => priorProduct[sort] - latterProduct[sort]);
+      finalData.products = finalData.products.sort((priorProduct, latterProduct) => {
+        if (sort === "price_low_to_high") {
+          return priorProduct["price"] - latterProduct["price"];
+        } else if (sort === "price_high_to_low") {
+          return latterProduct["price"] - priorProduct["price"];
+        }
+      });
     }
     if (page) {
       finalData.allNumber = finalData.products.length;
