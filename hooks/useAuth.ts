@@ -12,8 +12,10 @@ export default function useAuth() {
     loginUser(email, password, remember).catch(() => setAuthStatus("ERROR"));
   }
 
-  function signup(email: string, password: string, data: Object = {}, directLogin: boolean = true) {
-    signupUser(email, password, data, directLogin).catch(() => setAuthStatus("ERROR"));
+  function signup(email: string, password: string, data: Object = {}, directLogin: boolean = false) {
+    signupUser(email, password, data, directLogin)
+      .then(() => loginUser(email, password, true).catch(() => setAuthStatus("ERROR")))
+      .catch(() => setAuthStatus("ERROR"));
   }
 
   function logout() {
