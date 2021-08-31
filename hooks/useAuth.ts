@@ -1,34 +1,54 @@
+import axios from "axios";
 import { useContext } from "react";
-import { useIdentityContext } from "react-netlify-identity";
 import { AuthContext, SetAuthContext } from "../providers/AuthProvider";
+import { BASE_URL } from "../constants/index";
+import Cookie from "js-cookie";
 
 export default function useAuth() {
-  const { signupUser, loginUser, isLoggedIn, user, logoutUser, setUser } = useIdentityContext();
+  const authData = useContext(AuthContext);
+  const setAuthData = useContext(SetAuthContext);
 
-  const { authStatus } = useContext(AuthContext);
-  const setAuthContext = useContext(SetAuthContext);
+  function login(email: string, password: string) {
+    if (!setAuthData || typeof window === "undefined") return;
 
-  function login(email: string, password: string, remember: boolean = true) {
-    loginUser(email, password, remember).catch(() => setAuthStatus("ERROR"));
+    setAuthData((pre) => ({ ...pre, authStatus: "LOADING" }));
+
+    axios
+      .post(BASE_URL + "/auth/local", {
+        identifier: email,
+        password,
+      })
+      .then((res) => {
+        setAuthData({ ...res.data, authStatus: "LOGGED_IN" });
+        Cookie.set("token", res.data.jwt);
+      })
+      .catch((err) => setAuthData((pre) => ({ ...pre, authStatus: "ERROR" })));
   }
 
-  function signup(email: string, password: string, data: Object = {}, directLogin: boolean = false) {
-    signupUser(email, password, data, directLogin)
-      .then(() => loginUser(email, password, true).catch(() => setAuthStatus("ERROR")))
-      .catch(() => setAuthStatus("ERROR"));
+  function signup(email: string, password: string, username: string) {
+    if (!setAuthData || typeof window === "undefined") return;
+
+    setAuthData((pre) => ({ ...pre, authStatus: "LOADING" }));
+
+    axios
+      .post(BASE_URL + "/auth/local/register", {
+        username,
+        email,
+        password,
+      })
+      .then((res) => {
+        setAuthData({ ...res.data, authStatus: "LOGGED_IN" });
+        Cookie.set("token", res.data.jwt);
+      })
+      .catch((err) => setAuthData((pre) => ({ ...pre, authStatus: "ERROR" })));
   }
 
   function logout() {
-    try {
-      logoutUser();
-    } catch (error) {
-      setUser(undefined);
-    }
+    if (!setAuthData) return;
+
+    setAuthData({ authStatus: null });
+    Cookie.remove("token");
   }
 
-  function setAuthStatus(inputValue: "LOADING" | "ERROR" | "OK" | null) {
-    if (setAuthContext) setAuthContext((previousState) => ({ ...previousState, authStatus: inputValue }));
-  }
-
-  return { login, signup, logout, isLoggedIn, user, authStatus, setAuthStatus };
+  return { login, signup, logout, authData };
 }

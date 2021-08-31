@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import MenuInput from "./MenuInput";
 
 export default function LoginInputList() {
-  const { login, setAuthStatus } = useAuth();
+  const { login } = useAuth();
 
   return (
     <Formik
@@ -19,7 +19,6 @@ export default function LoginInputList() {
       })}
       onSubmit={(values) => {
         const { userEmail, userPassword } = values;
-        setAuthStatus("LOADING");
         login(userEmail, userPassword);
       }}
     >

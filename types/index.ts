@@ -21,6 +21,8 @@ export type ProductItemType = {
   instock: boolean;
 };
 
+export type sliderItemType = { id: number; picture: [{ url: string }]; pictureAlt: string };
+
 export type ProductsDataType = { products: ProductItemType[]; allNumber: number | null };
 
 export type CartItemType = {
@@ -74,7 +76,25 @@ export type LoginDataTypes = { email: string; password: string };
 
 export type SignupDataTypes = { email: string; password: string; data: { full_name: string } };
 
-export type AuthContextType = { authStatus: null | "LOADING" | "ERROR" | "OK" };
+export type AuthContextType = {
+  authStatus: null | "LOADING" | "ERROR" | "LOGGED_IN";
+  user?: {
+    id: number;
+    username: string;
+    email: string;
+    provider: string;
+    confirmed: boolean;
+    blocked: boolean;
+    role: {
+      id: number;
+      name: string;
+      description: string;
+      type: string;
+    };
+    created_at: string;
+    updated_at: string;
+  };
+};
 
 export interface actionInterface {
   type: string;

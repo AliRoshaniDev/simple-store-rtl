@@ -5,19 +5,16 @@ import Head from "next/head";
 import NavBar from "../components/NavBar";
 
 import dynamic from "next/dynamic";
-import { IdentityContextProvider } from "react-netlify-identity";
 
 import AuthProvider from "../providers/AuthProvider";
 
 const DynamicCartProviderWithNoSSR = dynamic(() => import("../providers/CartProvider"), { ssr: false });
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const url = "https://simple-store-rtl.netlify.app/";
-
   return (
     <>
       <Head>
-        <title>Simple Store</title>
+        <title>Simple Store | فروشگاه ساده</title>
         <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
@@ -43,14 +40,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:image" content="https://raw.githubusercontent.com/AliMoallem27/simple-store-rtl/dev-ts-next/public/images/others/demo.jpg" />
       </Head>
 
-      <IdentityContextProvider url={url}>
-        <AuthProvider>
-          <DynamicCartProviderWithNoSSR>
-            <NavBar />
-            <Component {...pageProps} />
-          </DynamicCartProviderWithNoSSR>
-        </AuthProvider>
-      </IdentityContextProvider>
+      <AuthProvider>
+        <DynamicCartProviderWithNoSSR>
+          <NavBar />
+          <Component {...pageProps} />
+        </DynamicCartProviderWithNoSSR>
+      </AuthProvider>
     </>
   );
 }

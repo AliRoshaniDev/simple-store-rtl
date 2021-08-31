@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { BASE_URL } from "../constants/index";
+
+axios.defaults.baseURL = BASE_URL;
 
 //This hook is used to receive data by url
-export default function useExternalData<T>(url: string): T | undefined {
+export default function useExternalData<T>(url: string): [T | undefined, any | undefined, boolean] {
   const [data, setData] = useState<T | undefined>(undefined);
+  const [error, setError] = useState<any | undefined>(undefined);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((reponseData) => setData(reponseData))
-      .catch((err) => setData(undefined));
+    setLoading(true);
+    axios(url)
+      .then((res) => setData(res.data))
+      .catch((err) => setError(err))
+      .then(() => setLoading(false));
   }, [url]);
-  return data;
+  return [data, error, loading];
 }
