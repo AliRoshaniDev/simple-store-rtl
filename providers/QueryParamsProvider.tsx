@@ -4,21 +4,19 @@ import useExternalData from "../hooks/useExternalData";
 import { ProductItemType } from "../types/index";
 
 import { ChildrenType, QueryParamsDataType, QueryParamsFunctionsType, ProductsDataType } from "../types/index";
-import { boolean, string } from "yup/lib/locale";
-import { number } from "yup";
 
-export const QueryContext = createContext<(QueryParamsDataType & ProductsDataType) | undefined>(undefined);
-export const SetQueryContext = createContext<QueryParamsFunctionsType | undefined>(undefined);
+export const QueryContext = createContext<QueryParamsDataType & ProductsDataType>({} as QueryParamsDataType & ProductsDataType);
+export const SetQueryContext = createContext<QueryParamsFunctionsType>({} as QueryParamsFunctionsType);
 
 export default function QueryParamsProvider(props: ChildrenType) {
   const { children } = props;
 
   const [queryParamsData, queryParamsFunctions] = useQueryParams();
 
-  const productsData = useExternalData<ProductItemType[]>(`/.netlify/functions/products?${queryParamsData.queryString}`) as any as ProductsDataType;
+  const [productsData] = useExternalData<ProductItemType[]>(`/products?${queryParamsData.queryString}`);
 
   return (
-    <QueryContext.Provider value={{ ...queryParamsData, ...productsData }}>
+    <QueryContext.Provider value={{ ...queryParamsData, products: productsData }}>
       <SetQueryContext.Provider value={queryParamsFunctions}>{children}</SetQueryContext.Provider>
     </QueryContext.Provider>
   );
