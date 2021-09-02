@@ -12,13 +12,13 @@ export default function ProductFilter() {
 
   function handleClickFilter() {
     if (applyOneFilter) {
-      if (queryObject && queryObject["page"] !== 1) applyOneFilter("page", 1); ////////////////
-      applyOneFilter("filter", "instock");
+      if (queryObject && queryObject["_start"] !== 0) applyOneFilter("_start", 0); /////////////////
+      applyOneFilter("instock", "true");
     }
   }
 
   function getCheckedValue(): boolean {
-    if (queryObject && queryObject["filter"] === "instock") {
+    if (queryObject && queryObject["instock"] === "true") {
       return true;
     } else {
       return false;
