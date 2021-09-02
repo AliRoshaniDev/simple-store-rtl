@@ -10,7 +10,8 @@ export default function useQueryParams(): returnedFromHook {
   const init = useNextQueryParams(); // { [key: string]: string }
 
   function getInit() {
-    if (!init["page"]) init["page"] = "1"; // this mutate maybe isn't good ///////////
+    if (!init["_start"]) init["_start"] = "0";
+    if (!init["_limit"]) init["_limit"] = "8";
 
     const initQueryObject = initConverter(init);
 
