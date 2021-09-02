@@ -4,10 +4,10 @@ import useQueryContext from "../hooks/useQueryContext";
 import Btn from "./Btn";
 
 export default function ProductSearch() {
-  const { search, queryObject, applyOneFilter } = useQueryContext();
+  const { queryObject, applyOneFilter } = useQueryContext();
 
   function getQueryValue(): string {
-    if (queryObject && queryObject.query) {
+    if (queryObject.query) {
       return queryObject.query;
     } else {
       return "";
@@ -25,9 +25,8 @@ export default function ProductSearch() {
         })}
         onSubmit={(values, actions) => {
           const { searchProducts } = values;
-          if (!search || !queryObject || !applyOneFilter) return;
-          if (queryObject["page"] !== 1) applyOneFilter("page", 1); ////////////////
-          search(searchProducts);
+          if (queryObject["_start"] !== 0) applyOneFilter("_start", 0);
+          applyOneFilter("name_contains", searchProducts);
         }}
       >
         <Form className="flex w-full sm:w-72">
