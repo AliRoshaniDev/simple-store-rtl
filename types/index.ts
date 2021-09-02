@@ -14,16 +14,62 @@ export interface BadgeInputInterface {
 // };
 
 export type ProductItemType = {
+  id: number;
   name: string;
   price: number;
-  picture: string;
-  id: number;
   instock: boolean;
+  published_at: string;
+  created_at: string;
+  updated_at: string;
+  picture: [
+    {
+      id: number;
+      name: string;
+      alternativeText: string;
+      caption: string;
+      width: number;
+      height: number;
+      formats: {
+        medium: {
+          name: string;
+          hash: string;
+          ext: string;
+          mime: string;
+          width: number;
+          height: number;
+          size: number;
+          path: any;
+          url: string;
+        };
+        small: {
+          name: string;
+          hash: string;
+          ext: string;
+          mime: string;
+          width: number;
+          height: number;
+          size: number;
+          path: any;
+          url: string;
+        };
+      };
+      hash: string;
+      ext: string;
+      mime: string;
+      size: number;
+      url: string;
+      previewUrl: any;
+      provider: string;
+      provider_metadata: any;
+      created_at: string;
+      updated_at: string;
+    }
+  ];
 };
 
 export type sliderItemType = { id: number; picture: [{ url: string }]; pictureAlt: string };
 
-export type ProductsDataType = { products: ProductItemType[]; allNumber: number | null };
+export type ProductsDataType = { products: ProductItemType[] | undefined };
 
 export type CartItemType = {
   name: string;
