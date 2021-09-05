@@ -74,7 +74,18 @@ export type ProductsDataType = { products: ProductItemType[] | undefined };
 export type CartItemType = {
   name: string;
   price: number;
-  picture: string;
+  picture: [
+    {
+      height: number;
+      id: number;
+      name: string;
+      provider: string;
+      size: number;
+      updated_at: string;
+      url: string;
+      width: number;
+    }
+  ];
   id: number;
   instock: boolean;
   addedNumber: number;
