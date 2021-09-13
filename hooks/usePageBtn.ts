@@ -15,7 +15,7 @@ export default function usePageBtn(_start: number): { title: string; address: nu
   const newQueryObject = dissoc("_start", dissoc("_limit", queryObject!));
 
   const url = BASE_URL + "/products/count?" + qs.stringify(newQueryObject);
-  console.log(url);
+
   const [productsNumber] = useExternalData<number>(url);
 
   const pageCounter = productsNumber ? Math.ceil(productsNumber / POSTS_PER_PAGE) : 1;
