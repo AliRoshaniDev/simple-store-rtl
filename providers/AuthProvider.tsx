@@ -5,15 +5,13 @@ import Cookie from "js-cookie";
 import axios from "axios";
 import { BASE_URL } from "../constants/index";
 
-const intiAuthData = { authStatus: null };
-
-export const AuthContext = createContext<AuthContextType>(intiAuthData);
-export const SetAuthContext = createContext<Dispatch<SetStateAction<AuthContextType>> | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType>({ authStatus: null });
+export const SetAuthContext = createContext<Dispatch<SetStateAction<AuthContextType>>>({} as Dispatch<SetStateAction<AuthContextType>>);
 
 export default function AuthProvider(props: ChildrenType) {
   const { children } = props;
 
-  let [authData, setAuthData] = useState<AuthContextType>(intiAuthData);
+  let [authData, setAuthData] = useState<AuthContextType>({ authStatus: null });
 
   useEffect(() => {
     const token = Cookie.get("token");

@@ -5,7 +5,7 @@ import Btn from "./Btn";
 export default function MenuProfile() {
   const { authData, logout } = useAuth();
 
-  const { user } = authData;
+  const { authStatus } = authData;
 
   return (
     <div className="max-h-60 overflow-auto">
@@ -15,9 +15,9 @@ export default function MenuProfile() {
             <Image className="rounded-lg" layout="fill" objectFit="cover" src="/images/others/default-profile.png" alt="profile picture" />
           </figure>
           <div className="w-userItemText flex flex-col pr-2">
-            <span className="whitespace-nowrap text-gray-700 overflow-hidden font-vazir-latin">{user?.username}</span>
+            <span className="whitespace-nowrap text-gray-700 overflow-hidden font-vazir-latin">{authStatus === "LOGGED_IN" && authData.user.username}</span>
             <span dir="ltr" className="text-gray-400 font-vazir-latin whitespace-nowrap truncate">
-              {user?.email}
+              {authStatus === "LOGGED_IN" && authData.user.email}
             </span>
           </div>
         </div>

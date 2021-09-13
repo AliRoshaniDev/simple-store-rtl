@@ -133,25 +133,29 @@ export type LoginDataTypes = { email: string; password: string };
 
 export type SignupDataTypes = { email: string; password: string; data: { full_name: string } };
 
-export type AuthContextType = {
-  authStatus: null | "LOADING" | "ERROR" | "LOGGED_IN";
-  user?: {
-    id: number;
-    username: string;
-    email: string;
-    provider: string;
-    confirmed: boolean;
-    blocked: boolean;
-    role: {
-      id: number;
-      name: string;
-      description: string;
-      type: string;
+export type AuthContextType =
+  | {
+      authStatus: null | "LOADING" | "ERROR";
+    }
+  | {
+      authStatus: "LOGGED_IN";
+      user: {
+        id: number;
+        username: string;
+        email: string;
+        provider: string;
+        confirmed: boolean;
+        blocked: boolean;
+        role: {
+          id: number;
+          name: string;
+          description: string;
+          type: string;
+        };
+        created_at: string;
+        updated_at: string;
+      };
     };
-    created_at: string;
-    updated_at: string;
-  };
-};
 
 export interface actionInterface {
   type: string;

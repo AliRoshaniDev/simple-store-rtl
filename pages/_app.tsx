@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/images/favicons/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#216353" />
-        <meta name="description" content="Simple RTL Store with React.js and tailwindcss." />
+        <meta name="description" content="Simple RTL Store built with NEXT and TS" />
         <link rel="apple-touch-icon" href="/images/favicons/logo192.png" />
 
         <meta property="og:image" content="/images/others/demo.jpg" />

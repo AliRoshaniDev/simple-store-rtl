@@ -9,7 +9,7 @@ export default function useAuth() {
   const setAuthData = useContext(SetAuthContext);
 
   function login(email: string, password: string) {
-    if (!setAuthData || typeof window === "undefined") return;
+    if (typeof window === "undefined") return;
 
     setAuthData((pre) => ({ ...pre, authStatus: "LOADING" }));
 
@@ -26,7 +26,7 @@ export default function useAuth() {
   }
 
   function signup(email: string, password: string, username: string) {
-    if (!setAuthData || typeof window === "undefined") return;
+    if (typeof window === "undefined") return;
 
     setAuthData((pre) => ({ ...pre, authStatus: "LOADING" }));
 
@@ -44,11 +44,9 @@ export default function useAuth() {
   }
 
   function logout() {
-    if (!setAuthData) return;
-
     setAuthData({ authStatus: null });
     Cookie.remove("token");
   }
 
-  return { login, signup, logout, authData };
+  return { login, signup, logout, setAuthData, authData };
 }
