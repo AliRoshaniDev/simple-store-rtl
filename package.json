@@ -1,34 +1,38 @@
 {
-  "name": "simple-store-rtl",
-  "version": "0.1.0",
+  "name": "backend",
   "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
   },
+  "devDependencies": {},
   "dependencies": {
-    "formik": "^2.2.9",
-    "next": "11.0.1",
-    "qs": "^6.10.1",
-    "ramda": "^0.27.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-netlify-identity": "^0.2.5",
-    "react-svg": "^14.0.3",
-    "swiper": "^6.7.5",
-    "yup": "^0.32.9"
+    "strapi": "3.6.8",
+    "strapi-admin": "3.6.8",
+    "strapi-utils": "3.6.8",
+    "strapi-plugin-content-type-builder": "3.6.8",
+    "strapi-plugin-content-manager": "3.6.8",
+    "strapi-plugin-users-permissions": "3.6.8",
+    "strapi-plugin-email": "3.6.8",
+    "strapi-plugin-upload": "3.6.8",
+    "strapi-plugin-i18n": "3.6.8",
+    "strapi-connector-bookshelf": "3.6.8",
+    "knex": "0.21.18",
+    "sqlite3": "5.0.0"
   },
-  "devDependencies": {
-    "@types/qs": "^6.9.7",
-    "@types/ramda": "github:types/npm-ramda#dist",
-    "@types/react": "17.0.11",
-    "autoprefixer": "^10.2.6",
-    "eslint": "7.29.0",
-    "eslint-config-next": "11.0.1",
-    "postcss": "^8.3.5",
-    "tailwindcss": "^2.2.4",
-    "typescript": "4.3.4"
-  }
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "b7ae4a29-376b-4641-8ccb-fc8c08de0905"
+  },
+  "engines": {
+    "node": ">=10.16.0 <=14.x.x",
+    "npm": "^6.0.0"
+  },
+  "license": "MIT"
 }
