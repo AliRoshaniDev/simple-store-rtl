@@ -4,9 +4,9 @@ import { ChildrenType, ProductContextType, ProductsDataType } from "../types/ind
 
 export const ProductContext = createContext<ProductContextType>({} as ProductContextType);
 
-export default function ProductProvider(props: ChildrenType & { initialProductData: ProductsDataType }) {
+export default function ProductProvider(props: ChildrenType & { initialProductData: string }) {
   const { children, initialProductData } = props;
-  const [productsData, setProductsData] = useState<ProductsDataType>(initialProductData);
+  const [productsData, setProductsData] = useState<ProductsDataType>(JSON.parse(initialProductData));
 
   const [queryParamsData, queryParamsFunctions] = useQueryParams();
 

@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import { ProductsDataType } from "../types/index";
 
-export default function Home(props: { initialProductData: ProductsDataType }) {
+export default function Home(props: { initialProductData: string }) {
   return (
     <>
       <SlideShow />
@@ -22,7 +22,7 @@ export async function getServerSideProps(context: any) {
 
   return {
     props: {
-      initialProductData,
+      initialProductData: JSON.stringify(initialProductData),
     },
   };
 }
