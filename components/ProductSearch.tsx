@@ -7,8 +7,8 @@ export default function ProductSearch() {
   const { queryObject, applyOneFilter } = useQueryContext();
 
   function getQueryValue(): string {
-    if (queryObject.query) {
-      return queryObject.query;
+    if (typeof queryObject["name_contains"] === "string") {
+      return queryObject["name_contains"];
     } else {
       return "";
     }
