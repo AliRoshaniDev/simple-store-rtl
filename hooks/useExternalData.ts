@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { BASE_URL } from "../constants/index";
-
-axios.defaults.baseURL = BASE_URL;
 
 //This hook is used to receive data by url
 export default function useExternalData<T>(url: string): [T | undefined, any | undefined, boolean] {

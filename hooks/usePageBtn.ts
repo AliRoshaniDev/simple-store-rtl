@@ -2,19 +2,18 @@ import useQueryContext from "../hooks/useQueryContext";
 import useExternalData from "../hooks/useExternalData";
 import qs from "qs";
 import { dissoc } from "ramda";
-import { BASE_URL, POSTS_PER_PAGE } from "../constants/index";
+import { POSTS_PER_PAGE } from "../constants/index";
 import { useRouter } from "next/router";
 
 export default function usePageBtn(_start: number): { title: string; address: number }[] {
   const router = useRouter();
 
   const { queryObject } = useQueryContext();
-
   if (_start % POSTS_PER_PAGE !== 0 || (queryObject!["_limit"] as number) % POSTS_PER_PAGE !== 0) router.push("/404");
 
   const newQueryObject = dissoc("_start", dissoc("_limit", queryObject!));
 
-  const url = BASE_URL + "/products/count?" + qs.stringify(newQueryObject);
+  const url = process.env.NEXT_PUBLIC_BASE_URL + "/products/count?" + qs.stringify(newQueryObject);
 
   const [productsNumber] = useExternalData<number>(url);
 

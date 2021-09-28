@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext, SetAuthContext } from "../providers/AuthProvider";
-import { BASE_URL } from "../constants/index";
 import Cookie from "js-cookie";
 
 export default function useAuth() {
@@ -14,9 +13,11 @@ export default function useAuth() {
     setAuthData((pre) => ({ ...pre, authStatus: "LOADING" }));
 
     axios
-      .post(BASE_URL + "/auth/local", {
+      .post("/auth/local", {
         identifier: email,
         password,
+      }, {
+        baseURL: process.env.NEXT_PUBLIC_BASE_URL
       })
       .then((res) => {
         setAuthData({ ...res.data, authStatus: "LOGGED_IN" });
@@ -31,10 +32,12 @@ export default function useAuth() {
     setAuthData((pre) => ({ ...pre, authStatus: "LOADING" }));
 
     axios
-      .post(BASE_URL + "/auth/local/register", {
+      .post("/auth/local/register", {
         username,
         email,
         password,
+      }, {
+        baseURL: process.env.NEXT_PUBLIC_BASE_URL
       })
       .then((res) => {
         setAuthData({ ...res.data, authStatus: "LOGGED_IN" });

@@ -3,7 +3,6 @@ import { ChildrenType, AuthContextType } from "../types/index";
 import { SetStateAction, Dispatch } from "react";
 import Cookie from "js-cookie";
 import axios from "axios";
-import { BASE_URL } from "../constants/index";
 
 export const AuthContext = createContext<AuthContextType>({ authStatus: null });
 export const SetAuthContext = createContext<Dispatch<SetStateAction<AuthContextType>>>({} as Dispatch<SetStateAction<AuthContextType>>);
@@ -18,10 +17,11 @@ export default function AuthProvider(props: ChildrenType) {
 
     if (token) {
       axios
-        .get(BASE_URL + "/users/me", {
+        .get("/users/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
+          baseURL: process.env.NEXT_PUBLIC_BASE_URL
         })
         .then((res) => {
           if (res.statusText === "OK") {

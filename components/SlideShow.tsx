@@ -2,15 +2,13 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Autoplay } from "swiper";
 import useExternalData from "../hooks/useExternalData";
-import { sliderItemType } from "../types/index";
-
-import { BASE_URL } from "../constants/index";
+import { SliderItemType } from "../types/index";
 
 SwiperCore.use([Navigation, Autoplay]);
 (Autoplay as any).params.autoplay.delay = 5000;
 
 function SlideShow() {
-  const [sliderData, error, loading] = useExternalData<sliderItemType[]>("/slides") || [];
+  const [sliderData, error, loading] = useExternalData<SliderItemType[]>(process.env.NEXT_PUBLIC_BASE_URL + "/slides") || [];
 
   return (
     <section className="w-full mb-10 2xl:px-12">
@@ -26,7 +24,7 @@ function SlideShow() {
           {sliderData &&
             sliderData.map((item) => (
               <SwiperSlide key={item.id} className="h-56 sm:h-64 md:h-92 w-full">
-                <Image layout="fill" objectFit="cover" src={BASE_URL + item.picture[0].url} alt={item.pictureAlt} key={item.id} />
+                <Image layout="fill" objectFit="cover" src={process.env.NEXT_PUBLIC_BASE_URL + item.picture[0].url} alt={item.pictureAlt} key={item.id} />
               </SwiperSlide>
             ))}
         </Swiper>
