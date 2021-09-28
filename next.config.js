@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost"],
+    domains: ["res.cloudinary.com", "simple-store-rtl-backend.herokuapp.com", "localhost"],
   },
 };
