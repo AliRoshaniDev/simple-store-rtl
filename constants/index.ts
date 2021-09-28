@@ -1,1 +1,1 @@
-export const NUMBER_POST_IN_PAGE = 8;
+export const POSTS_PER_PAGE = 8;

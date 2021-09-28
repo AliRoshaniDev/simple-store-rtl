@@ -7,11 +7,12 @@ export default function MenuFillCartItem(props: CartItemType) {
   const { name, price, addedNumber, instock, picture, id } = props;
   const { deleteOne } = useSetCartData();
 
+
   return (
     <div className="h-24 mb-1 text-right w-full whitespace-no-wrap rounded-lg text-base text-gray-600 hover:text-gray-800 hover:bg-mycolor-light transition duration-200 ease-in-out">
       <div className="flex items-center px-2 h-full">
         <figure className="h-20 w-20 relative">
-          <Image className="rounded-lg" layout="fill" objectFit="cover" src={picture} alt={name} />
+          <Image className="rounded-lg" layout="fill" objectFit="cover" src={process.env.NEXT_PUBLIC_BASE_URL + picture[0].url} alt={name} />
         </figure>
         <div className="w-cartItemText flex flex-col pr-2">
           <span className="whitespace-nowrap text-gray-700 overflow-hidden font-vazir-latin">{name}</span>

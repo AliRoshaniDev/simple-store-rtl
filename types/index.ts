@@ -1,4 +1,4 @@
-import React, { ReactNode, MouseEvent } from "react";
+import React, { ReactNode, Dispatch, SetStateAction } from "react";
 
 export interface BadgeInputInterface {
   number?: number;
@@ -14,35 +14,88 @@ export interface BadgeInputInterface {
 // };
 
 export type ProductItemType = {
+  id: number;
   name: string;
   price: number;
-  picture: string;
-  id: number;
   instock: boolean;
+  picture: [
+    {
+      id: number;
+      name: string;
+      formats: {
+        medium: {
+          url: string;
+        };
+        small: {
+          url: string;
+        };
+      };
+      url: string;
+    }
+  ];
 };
 
-export type ProductsDataType = { products: ProductItemType[]; allNumber: number | null };
+export type SliderItemType = { id: number; picture: [{ url: string }]; pictureAlt: string };
+
+export type ProductsDataType = ProductItemType[] | null;
 
 export type CartItemType = {
   name: string;
   price: number;
-  picture: string;
+  picture: [
+    {
+      id: number;
+      url: string;
+    }
+  ];
   id: number;
   instock: boolean;
   addedNumber: number;
 };
 
-export type ActionCartType = {
-  type: "DELETE_ALL" | "DELETE_ONE" | "ADD_ONE";
-  payload?: {
-    name?: string;
-    price?: number;
-    picture?: string;
-    id: number;
-    instock?: boolean;
-    addedNumber?: number;
-  };
-};
+export type ActionCartType =
+  | {
+      type: "DELETE_ALL";
+    }
+  | {
+      type: "DELETE_ONE";
+      payload: {
+        id: number;
+      };
+    }
+  | {
+      type: "ADD_ONE";
+      payload: {
+        name: string;
+        price: number;
+        picture: [
+          {
+            id: number;
+            url: string;
+          }
+        ];
+        id: number;
+        instock: boolean;
+        addedNumber: number;
+      };
+    };
+
+// export type ActionCartType = {
+//   type: "DELETE_ALL" | "DELETE_ONE" | "ADD_ONE";
+//   payload?: {
+//     name?: string;
+//     price?: number;
+//     picture?: [
+//       {
+//         id: number;
+//         url: string;
+//       }
+//     ];
+//     id: number;
+//     instock?: boolean;
+//     addedNumber?: number;
+//   };
+// };
 
 // export type CartDataType = {
 //   name: string;
@@ -74,36 +127,73 @@ export type LoginDataTypes = { email: string; password: string };
 
 export type SignupDataTypes = { email: string; password: string; data: { full_name: string } };
 
-export type AuthContextType = { authStatus: null | "LOADING" | "ERROR" | "OK" };
+export type AuthContextType =
+  | {
+      authStatus: null | "LOADING" | "ERROR";
+    }
+  | {
+      authStatus: "LOGGED_IN";
+      user: {
+        id: number;
+        username: string;
+        email: string;
+        provider: string;
+        confirmed: boolean;
+        blocked: boolean;
+        role: {
+          id: number;
+          name: string;
+          description: string;
+          type: string;
+        };
+        created_at: string;
+        updated_at: string;
+      };
+    };
 
-export interface actionInterface {
-  type: string;
-  payload: {
-    query?: string;
-    filterKey?: string;
-    status?: string | boolean | number;
-  };
-}
+export type QueryParamAction =
+  | {
+      type: "ONE_FILTER";
+      payload: {
+        filterKey: string;
+        status: string | boolean | number;
+      };
+    }
+  | {
+      type: "SOME_FILTER";
+      payload: {
+        filterKey: string;
+        status: string;
+      };
+    }
+  | {
+      type: "CLEAR";
+      payload: {
+        filterKey: string;
+      };
+    };
 
-export interface queryInterface {
-  query?: string;
-}
+// export type QueryParamAction = {
+//   type: string;
+//   payload: {
+//     query?: string;
+//     filterKey?: string;
+//     status?: string | boolean | number;
+//   };
+// };
 
-export type filterKeyInterface = {
+export type stateInterface = {
   [filterKey: string]: string[] | string | boolean | number;
 };
-
-export type stateInterface = queryInterface & filterKeyInterface;
 
 export type QueryParamsDataType = { queryString: string; queryObject: stateInterface };
 
 export type QueryParamsFunctionsType = {
-  search: (query: string) => void;
   applyOneFilter: (filterKey: string, status: string | boolean | number) => void;
   applySomeFilter: (filterKey: string, status: string) => void;
   clearFilter: (filterKey: string) => void;
 };
 
-export type returnedFromHook = [QueryParamsDataType, QueryParamsFunctionsType];
+export type QueryParamsOutput = [QueryParamsDataType, QueryParamsFunctionsType];
 
-export type queryParamsHook = () => returnedFromHook;
+export type ProductContextType = QueryParamsFunctionsType & QueryParamsDataType & { productsData: ProductsDataType; setProductsData: Dispatch<SetStateAction<ProductsDataType>> };

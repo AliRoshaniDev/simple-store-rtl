@@ -1,9 +1,9 @@
-import { useContext, useMemo } from "react";
-import { SetCartContext } from "../providers/CartProvider";
+import { useMemo } from "react";
+// import { SetCartContext } from "../providers/CartProvider";
 import { ProductItemType } from "../types/index";
 
 function useSetCartData() {
-  const dispatch = useContext(SetCartContext);
+  // const dispatch = useContext(SetCartContext);
   const channel = useMemo(() => new BroadcastChannel("cart_data"), []);
 
   function deleteAll() {

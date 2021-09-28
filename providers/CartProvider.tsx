@@ -1,10 +1,10 @@
 import { createContext } from "react";
 import useCartState from "../hooks/useCartState";
 import { ChildrenType, CartItemType, ActionCartType } from "../types/index";
-import { SetStateAction, Dispatch } from "react";
+import { Dispatch } from "react";
 
 export const CartContext = createContext<CartItemType[] | null>(null);
-export const SetCartContext = createContext<Dispatch<ActionCartType> | null>(null);
+export const SetCartContext = createContext<Dispatch<ActionCartType>>({} as Dispatch<ActionCartType>);
 
 export default function CartProvider(props: ChildrenType) {
   const { children } = props;

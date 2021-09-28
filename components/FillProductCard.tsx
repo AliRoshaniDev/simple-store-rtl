@@ -5,7 +5,7 @@ import Btn from "./Btn";
 import { ProductItemType } from "../types/index";
 
 export default function FillProductCard(props: ProductItemType) {
-  const { name, price, instock, picture, id } = props;
+  const { name, price, instock, picture } = props;
 
   const { addOne } = useSetCartData();
 
@@ -13,7 +13,7 @@ export default function FillProductCard(props: ProductItemType) {
     <article className="rounded-xl shadow-lg w-10/12 md:w-full h-72 select-none">
       <header className="w-full h-3/4 bg-mycolor-light">
         <figure className="h-full relative">
-          <Image layout="fill" objectFit="cover" placeholder="blur" blurDataURL="/images/others/product-loading.png" className="h-full w-full rounded-t-xl" src={picture} alt={name} />
+          <Image layout="fill" objectFit="cover" placeholder="blur" blurDataURL="/images/others/product-loading.png" className="h-full w-full rounded-t-xl" src={process.env.NEXT_PUBLIC_BASE_URL + picture[0].url} alt={name} />
         </figure>
       </header>
       <footer className="w-full px-3 pt-2 flex flex-col relative h-1/4 bg-white rounded-b-xl">

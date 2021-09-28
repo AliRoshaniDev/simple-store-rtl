@@ -27,7 +27,7 @@ export default function MenuFillCart() {
   return (
     <div>
       <div className={`${maxMenuHight} max-h-60 overflow-auto`}>
-        {cartData!.map((item) => (
+        {cartData?.map((item) => (
           <MenuFillCartItem {...item} key={item.id} />
         ))}
       </div>
