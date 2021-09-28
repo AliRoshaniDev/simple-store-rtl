@@ -24,7 +24,7 @@ function SlideShow() {
           {sliderData &&
             sliderData.map((item) => (
               <SwiperSlide key={item.id} className="h-56 sm:h-64 md:h-92 w-full">
-                <Image layout="fill" objectFit="cover" src={process.env.NEXT_PUBLIC_BASE_URL?.includes("localhost") ? process.env.NEXT_PUBLIC_BASE_URL + picture[0].url : picture[0].url} alt={item.pictureAlt} key={item.id} />
+                <Image layout="fill" objectFit="cover" src={process.env.NEXT_PUBLIC_BASE_URL?.includes("localhost") ? process.env.NEXT_PUBLIC_BASE_URL + item.picture[0].url : item.picture[0].url} alt={item.pictureAlt} key={item.id} />
               </SwiperSlide>
             ))}
         </Swiper>
