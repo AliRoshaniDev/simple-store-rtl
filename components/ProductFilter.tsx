@@ -11,10 +11,8 @@ export default function ProductFilter() {
   const { applyOneFilter, queryObject } = useQueryContext();
 
   function handleClickFilter() {
-    if (applyOneFilter) {
-      if (queryObject["_start"] !== 0) applyOneFilter("_start", 0);
-      applyOneFilter("instock", true);
-    }
+    if (queryObject["_start"] !== 0) applyOneFilter("_start", 0);
+    applyOneFilter("instock", true);
   }
 
   return (
