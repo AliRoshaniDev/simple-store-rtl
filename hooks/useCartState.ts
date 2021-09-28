@@ -6,27 +6,27 @@ export default function useCartState(): [CartItemType[] | null, Dispatch<ActionC
     return JSON.parse(localStorage.getItem("cart")!) || null;
   }
 
-  function reducer(state: CartItemType[] | null, action: ActionCartType): CartItemType[] | null {
-    const { payload } = action;
-
+  function reducer(state: CartItemType[] | null, action: ActionCartType) {
     switch (action.type) {
-      case "DELETE_ALL":
+      case "DELETE_ALL": {
         return null;
-
-      case "DELETE_ONE":
-        const filteredCart = [...state!].filter((cartItem) => cartItem.id !== payload!.id);
-
+      }
+      case "DELETE_ONE": {
+        if (!state) return state;
+        const { payload } = action;
+        const filteredCart = [...state].filter((cartItem) => cartItem.id !== payload.id);
         return !filteredCart.length ? null : filteredCart;
-
-      case "ADD_ONE":
+      }
+      case "ADD_ONE": {
+        const { payload } = action;
         if (!state) {
-          return [action.payload as CartItemType];
-        } else if (state.find((cartItem) => cartItem.id === payload!.id)) {
-          return [...state].map((cartItem) => (cartItem.id === payload!.id ? { ...cartItem, addedNumber: cartItem.addedNumber + 1 } : cartItem));
+          return [action.payload];
+        } else if (state.find((cartItem) => cartItem.id === payload.id)) {
+          return [...state].map((cartItem) => (cartItem.id === payload.id ? { ...cartItem, addedNumber: cartItem.addedNumber + 1 } : cartItem));
         } else {
-          return [...state, payload as CartItemType];
+          return [...state, payload];
         }
-
+      }
       default:
         return state;
     }
