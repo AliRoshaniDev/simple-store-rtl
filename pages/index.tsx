@@ -22,7 +22,7 @@ export async function getServerSideProps(context: any) {
 
   return {
     props: {
-      initialProductData: JSON.stringify(initialProductData),
+      initialProductData: JSON.stringify(initialProductData.data),
     },
   };
 }
