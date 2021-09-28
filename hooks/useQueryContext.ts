@@ -1,10 +1,8 @@
 import { useContext } from "react";
-import { QueryContext, SetQueryContext } from "../providers/QueryParamsProvider";
+import { ProductContext } from "../providers/ProductProvider";
 
 export default function useQueryContext() {
-  const queryParamsData = useContext(QueryContext);
+  const queryParamsData = useContext(ProductContext);
 
-  const queryParamsFunctions = useContext(SetQueryContext);
-
-  return { ...queryParamsData, ...queryParamsFunctions };
+  return { ...queryParamsData };
 }

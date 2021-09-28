@@ -5,7 +5,7 @@ import usePageBtn from "../hooks/usePageBtn";
 export default function ProductsPageBtns() {
   const { queryObject, applyOneFilter } = useQueryContext();
 
-  const _start = parseInt(queryObject!["_start"] as string);
+  const _start = parseInt(queryObject["_start"] as string);
   const Btns = usePageBtn(_start);
 
   function handleBtnClick(pageStart: number) {
