@@ -2,7 +2,6 @@ import ProductsItems from "./ProductsItems";
 import ProductProvider from "../providers/ProductProvider";
 import ProductsHeader from "./ProductsHeader";
 import ProductsPageBtns from "./ProductsPageBtns";
-import { ProductsDataType } from "../types/index";
 
 export default function Products(props: { initialProductData: string }) {
   return (
