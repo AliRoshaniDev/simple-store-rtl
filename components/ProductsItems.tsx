@@ -4,14 +4,17 @@ import useQueryContext from "../hooks/useQueryContext";
 import FillProductCard from "./FillProductCard";
 import LoadingProductCard from "./LoadingProductCard";
 import { POSTS_PER_PAGE } from "../constants/index";
+import { useIsFirstMount } from "../tools/index";
 
 export default function ProductsItems() {
   const { productsData, queryString, setProductsData } = useQueryContext();
 
+  const isFirstMount = useIsFirstMount();
   useEffect(() => {
-    // setProductsData(null);
-    axios.get("/products?" + queryString, {baseURL: process.env.NEXT_PUBLIC_BASE_URL})
-      .then((res) => setProductsData(res.data));
+    if (!isFirstMount) {
+      // setProductsData(null);
+      axios.get("/products?" + queryString, { baseURL: process.env.NEXT_PUBLIC_BASE_URL }).then((res) => setProductsData(res.data));
+    }
   }, [queryString]);
 
   return (
